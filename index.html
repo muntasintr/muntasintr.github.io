@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TECH SEEKER ACADEMY</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Teko:wght@700&family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tone.js for Sound Effects -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.7.77/Tone.js"></script>
+
+    <style>
+        /* Custom styles for applying fonts */
+        body {
+            font-family: 'Poppins', 'Hind Siliguri', sans-serif;
+            background-color: #0c111d; /* A darker, richer blue-black */
+        }
+        
+        .font-bangla {
+            font-family: 'Hind Siliguri', sans-serif;
+        }
+
+        .font-teko {
+            font-family: 'Teko', sans-serif;
+        }
+
+        /* Styling for the YouTube video container */
+        .aspect-w-16 { position: relative; padding-bottom: 56.25%; }
+        .aspect-h-9 { height: 0; }
+        .aspect-w-16 iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+
+        /* Header Text Style */
+        .header-container {
+            padding-top: 2rem;
+            padding-bottom: 2rem;
+        }
+
+        .header-title {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 700;
+            line-height: 1; /* Adjusted line-height */
+            text-align: center;
+            text-transform: uppercase;
+            white-space: nowrap; /* Prevents wrapping to new line */
+        }
+        
+        /* Letter pop animation */
+        .header-title .letter {
+            display: inline-block;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+        
+        .header-title:hover .letter {
+            transform: translateY(-10px);
+        }
+
+        .header-title .letter.white { color: #ffffff; }
+        .header-title .letter.orange { color: #f97316; }
+        .header-title .letter.space { margin: 0 0.1em; } /* For spacing between words */
+
+        .header-title .letter:hover {
+            transform: translateY(-20px) scale(1.1);
+            color: #22d3ee; /* Cyan hover color */
+        }
+
+        /* Custom glow effect for cards */
+        .card-glow {
+            transition: all 0.3s ease-in-out;
+        }
+        .card-glow:hover {
+            transform: translateY(-8px);
+        }
+        
+        /* Upcoming course card glow */
+        .upcoming-card-glow {
+             box-shadow: 0 0 15px rgba(34, 211, 238, 0.2);
+        }
+        .upcoming-card-glow:hover {
+             box-shadow: 0 0 30px rgba(34, 211, 238, 0.5), 0 0 50px rgba(34, 211, 238, 0.3);
+        }
+
+        /* Published course card sleek design */
+        .published-card-glow {
+            box-shadow: 0 0 15px rgba(168, 85, 247, 0.3); /* Purple glow */
+        }
+        .published-card-glow:hover {
+            box-shadow: 0 0 30px rgba(168, 85, 247, 0.6), 0 0 50px rgba(168, 85, 247, 0.4);
+        }
+
+    </style>
+</head>
+<body class="bg-gray-900 text-white">
+
+    <!-- Header Section -->
+    <header class="bg-black shadow-lg shadow-cyan-500/20">
+        <div class="container mx-auto text-center px-4 overflow-x-auto header-container">
+            <h1 class="header-title font-teko">
+                <span class="letter white">T</span><span class="letter white">E</span><span class="letter white">C</span><span class="letter white">H</span>
+                <span class="letter space"></span>
+                <span class="letter orange">S</span><span class="letter orange">E</span><span class="letter orange">E</span><span class="letter orange">K</span><span class="letter orange">E</span><span class="letter orange">R</span>
+                <span class="letter space"></span>
+                <span class="letter white">A</span><span class="letter white">C</span><span class="letter white">A</span><span class="letter white">D</span><span class="letter white">E</span><span class="letter white">M</span><span class="letter white">Y</span>
+            </h1>
+            <p class="text-gray-300 mt-2 text-lg font-bangla">আপনার স্কিল ডেভেলপমেন্টের সেরা ঠিকানা</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-16">
+
+        <!-- Published Courses Section -->
+        <section id="published-courses" class="mb-20">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 font-bangla"><span class="text-cyan-400">প্রকাশিত</span> কোর্স</h2>
+            <div class="flex flex-col items-center">
+                <a href="payment.html" class="course-link block">
+                    <div class="bg-gray-900 border border-purple-900 rounded-xl overflow-hidden card-glow published-card-glow max-w-sm">
+                        <img src="https://api.dicebear.com/8.x/shapes/svg?seed=3D-Animation&scale=85&radius=10&backgroundType=gradientLinear&backgroundColor=a855f7,0c111d" alt="3D Animation Course" class="w-full h-56 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-white mb-3">3D ANIMATION FACT SHORTS - JACK D FILMS STYLE</h3>
+                            <div class="flex items-baseline justify-between my-4">
+                                 <p class="text-3xl font-bold text-green-400">1200৳</p>
+                                 <p class="text-lg text-red-500 line-through ml-2">1500৳</p>
+                            </div>
+                            <div id="timer" class="mt-4 text-center bg-red-600 text-white py-2 px-4 rounded-lg font-semibold font-bangla">
+                                <!-- Countdown Timer will be injected here -->
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <button id="askGptBtn" class="mt-6 bg-purple-600 text-white font-bold py-3 px-6 rounded-full hover:bg-purple-700 transition-all duration-300 shadow-lg shadow-purple-500/40 transform hover:scale-105 font-bangla">
+                    ✨ ChatGPT কে জিজ্ঞেস করুন এই কোর্সটি কেমন হবে?
+                </button>
+            </div>
+        </section>
+
+        <!-- Upcoming Courses Section -->
+        <section id="upcoming-courses" class="mb-20">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 font-bangla"><span class="text-cyan-400">শীঘ্রই</span> আসছে</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Course Cards with different vignette colors -->
+                <div class="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden card-glow upcoming-card-glow course-link">
+                    <img src="https://api.dicebear.com/8.x/shapes/svg?seed=AI-Tools&scale=85&radius=10&backgroundType=gradientLinear&backgroundColor=22d3ee,0c111d" alt="AI Content Creation" class="w-full h-48 object-cover">
+                    <div class="p-5"><h3 class="text-lg font-semibold h-16">LEARN CONTENT CREATION AI TOOLS (A-Z)</h3><p class="text-xl font-bold text-cyan-400 mt-2">00৳</p></div>
+                </div>
+                <div class="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden card-glow upcoming-card-glow course-link">
+                    <img src="https://api.dicebear.com/8.x/shapes/svg?seed=Social-Media&scale=85&radius=10&backgroundType=gradientLinear&backgroundColor=a855f7,0c111d" alt="Social Media Automation" class="w-full h-48 object-cover">
+                    <div class="p-5"><h3 class="text-lg font-semibold h-16">ALL SOCIAL MEDIA AUTOMATION WITH AI</h3><p class="text-xl font-bold text-cyan-400 mt-2">00৳</p></div>
+                </div>
+                <div class="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden card-glow upcoming-card-glow course-link">
+                    <img src="https://api.dicebear.com/8.x/shapes/svg?seed=SEO&scale=85&radius=10&backgroundType=gradientLinear&backgroundColor=ec4899,0c111d" alt="YouTube SEO" class="w-full h-48 object-cover">
+                    <div class="p-5"><h3 class="text-lg font-semibold h-16">MASTER YOUTUBE VIDEO SEO WITH AI</h3><p class="text-xl font-bold text-cyan-400 mt-2">00৳</p></div>
+                </div>
+                <div class="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden card-glow upcoming-card-glow course-link">
+                    <img src="https://api.dicebear.com/8.x/shapes/svg?seed=Pro-Tricks&scale=85&radius=10&backgroundType=gradientLinear&backgroundColor=84cc16,0c111d" alt="Pro Account Tips" class="w-full h-48 object-cover">
+                    <div class="p-5"><h3 class="text-lg font-semibold h-16">PRO ACCOUNT FREE METHOD TIPS & TRICKS</h3><p class="text-xl font-bold text-cyan-400 mt-2">00৳</p></div>
+                </div>
+                 <div class="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden card-glow upcoming-card-glow course-link">
+                    <img src="https://api.dicebear.com/8.x/shapes/svg?seed=Sponsor&scale=85&radius=10&backgroundType=gradientLinear&backgroundColor=f59e0b,0c111d" alt="Sponsor and Affiliation" class="w-full h-48 object-cover">
+                    <div class="p-5"><h3 class="text-lg font-semibold h-16">UNLIMITED SPONSOR & AFFILIATION FOR 10X INCOME</h3><p class="text-xl font-bold text-cyan-400 mt-2">00৳</p></div>
+                </div>
+                <div class="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden card-glow upcoming-card-glow course-link">
+                    <img src="https://api.dicebear.com/8.x/shapes/svg?seed=Video-Editing&scale=85&radius=10&backgroundType=gradientLinear&backgroundColor=ef4444,0c111d" alt="Video Editing" class="w-full h-48 object-cover">
+                    <div class="p-5"><h3 class="text-lg font-semibold h-16">VIDEO EDITING BASIC FOR CONTENT CREATION</h3><p class="text-xl font-bold text-cyan-400 mt-2">00৳</p></div>
+                </div>
+                <div class="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden card-glow upcoming-card-glow course-link">
+                    <img src="https://api.dicebear.com/8.x/shapes/svg?seed=Script-Writing&scale=85&radius=10&backgroundType=gradientLinear&backgroundColor=14b8a6,0c111d" alt="Script Writing" class="w-full h-48 object-cover">
+                    <div class="p-5"><h3 class="text-lg font-semibold h-16">FUNDAMENTAL OF SCRIPT WRITING & STORYTELLING</h3><p class="text-xl font-bold text-cyan-400 mt-2">00৳</p></div>
+                </div>
+                <div class="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden card-glow upcoming-card-glow course-link">
+                    <img src="https://api.dicebear.com/8.x/shapes/svg?seed=Thumbnail&scale=85&radius=10&backgroundType=gradientLinear&backgroundColor=6366f1,0c111d" alt="Thumbnail Fundamental" class="w-full h-48 object-cover">
+                    <div class="p-5"><h3 class="text-lg font-semibold h-16">THUMBNAIL FUNDAMENTAL</h3><p class="text-xl font-bold text-cyan-400 mt-2">00৳</p></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mentor Section -->
+        <section id="mentor" class="py-20 bg-black rounded-xl my-20">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 font-bangla">আপনার <span class="text-cyan-400">মেন্টরের</span> সাথে পরিচিত হন</h2>
+                <div class="flex flex-col md:flex-row items-center justify-center gap-12">
+                    <img src="14.jpg" alt="Mentor" class="w-56 h-56 md:w-64 md:h-64 rounded-full object-cover border-4 border-cyan-400 shadow-xl shadow-cyan-400/30">
+                    <div class="md:w-1/2 text-center md:text-left">
+                        <h3 class="text-3xl font-bold text-cyan-400">Tasin</h3>
+                        <p class="mt-4 text-md text-gray-300">
+                            YouTuber | Creative Strategist | AI-Driven Content Creator | Prompt Engineer | Tech Reviewer & Educator | Automation Enthusiast
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- YouTube Channel Link Section -->
+        <section class="text-center mb-20">
+             <a href="https://www.youtube.com/@techseeker-tasin" target="_blank" class="inline-block bg-cyan-500 text-white font-bold text-lg py-3 px-8 rounded-full hover:bg-cyan-600 transition-all duration-300 shadow-lg shadow-cyan-500/40 transform hover:scale-105">
+                আমাদের ইউটিউব চ্যানেল ভিজিট করুন
+            </a>
+        </section>
+
+        <!-- YouTube Section -->
+        <section id="youtube-channel" class="py-20">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 font-bangla">আমাদের <span class="text-cyan-400">জনপ্রিয়</span> ভিডিও</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="aspect-w-16 aspect-h-9"><iframe src="https://www.youtube.com/embed/0HGgh99JMac" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="rounded-lg shadow-xl"></iframe></div>
+                <div class="aspect-w-16 aspect-h-9"><iframe src="https://www.youtube.com/embed/97u8PgjXkdo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="rounded-lg shadow-xl"></iframe></div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black border-t border-cyan-500/30 py-8">
+        <div class="container mx-auto text-center text-gray-400">
+            <p class="font-bangla text-xl mb-4">আমাদের সাথে যুক্ত হন</p>
+            <div class="flex justify-center space-x-6 mb-6">
+                <!-- Social Links -->
+                <a href="https://wa.me/YOUR_WHATSAPP_NUMBER" target="_blank" class="text-gray-400 hover:text-cyan-400 transition-colors" aria-label="WhatsApp"><svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.894 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.886-.004 2.114.65 4.135 1.866 5.83l-1.157 4.254 4.418-1.157zm9.266-5.615a.908.908 0 0 0-.908-.907c-.422 0-.749.19-1.066.363s-1.103 1.34-1.293 1.562c-.19.222-.38.232-.665.043-.285-.189-1.177-.435-2.241-1.373-.828-.731-1.38-1.636-1.555-1.912-.175-.276-.06-."/></svg></a>
+                <a href="https://shorturl.at/RqzYI" target="_blank" class="text-gray-400 hover:text-cyan-400 transition-colors" aria-label="Facebook"><svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg></a>
+                <a href="https://t.me/techseekertasin" target="_blank" class="text-gray-400 hover:text-cyan-400 transition-colors" aria-label="Telegram"><svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M11.944 0C5.356 0 0 5.356 0 11.944s5.356 11.944 11.944 11.944 11.944-5.356 11.944-11.944S18.532 0 11.944 0zm5.624 8.24l-2.1 9.84c-.16.744-.584.92-1.2.584l-3.232-2.384-1.56 1.5c-.168.168-.312.312-.624.312l.224-3.288 5.936-5.368c.264-.232-.04-.368-.408-.136L8.248 12.32 5.024 11.3c-.744-.24-.744-.736.144-1.088l11.2-4.336c.624-.24.968.144.8.964z"/></svg></a>
+                <a href="https://www.youtube.com/@techseeker-tasin" target="_blank" class="text-gray-400 hover:text-cyan-400 transition-colors" aria-label="YouTube"><svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg></a>
+            </div>
+            <p>&copy; 2025 TECH SEEKER ACADEMY. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Suggestion Modal -->
+    <div id="suggestionModal" class="hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
+        <div class="bg-gray-800 rounded-xl p-8 max-w-2xl w-full mx-4 shadow-2xl shadow-purple-500/30">
+            <div id="modalContent">
+                <!-- Loading State -->
+                <div id="loadingState" class="text-center">
+                    <svg class="animate-spin h-10 w-10 text-purple-400 mx-auto mb-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    <h3 class="text-2xl font-bold text-white font-bangla">AI এক্সপার্টের মতামত লোড হচ্ছে...</h3>
+                </div>
+                <!-- Result State -->
+                <div id="resultState" class="hidden">
+                     <h3 id="reviewTitle" class="text-3xl font-bold text-purple-400 mb-4 text-center font-bangla"></h3>
+                     <div class="bg-gray-900 p-6 rounded-lg">
+                        <p id="reviewBody" class="text-gray-300 mt-2 text-lg font-bangla"></p>
+                     </div>
+                </div>
+            </div>
+            <div class="text-center mt-6">
+                <button id="closeModalBtn" class="bg-red-600 text-white font-bold py-2 px-6 rounded-full hover:bg-red-700 transition-all duration-300">Close</button>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        // Countdown Timer Script
+        const countdown = () => {
+            const countDate = new Date();
+            countDate.setDate(countDate.getDate() + 2); // Set countdown for 2 days
+            const timerElement = document.getElementById('timer');
+            if (!timerElement) return;
+
+            const interval = setInterval(() => {
+                const now = new Date().getTime();
+                const distance = countDate - now;
+
+                if (distance < 0) {
+                    clearInterval(interval);
+                    timerElement.innerHTML = "অফারটি শেষ হয়ে গেছে";
+                    return;
+                }
+
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                timerElement.innerHTML = `অফার শেষ হচ্ছে: ${days} দিন ${hours} ঘন্টা ${minutes} মিনিট ${seconds} সেকেন্ড`;
+            }, 1000);
+        };
+        countdown();
+
+        // Sound Effect Script
+        document.addEventListener('DOMContentLoaded', () => {
+            const synth = new Tone.Synth({
+                oscillator: { type: 'sine' },
+                envelope: { attack: 0.005, decay: 0.1, sustain: 0.3, release: 1 }
+            }).toDestination();
+
+            // Generic click sound for links
+            const courseLinks = document.querySelectorAll('.course-link');
+            courseLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    Tone.start().then(() => {
+                        synth.triggerAttackRelease("C4", "8n");
+                    });
+
+                    // If it's a link, delay navigation to allow sound to play
+                    if (link.tagName === 'A' && link.getAttribute('href')) {
+                        e.preventDefault(); // Prevent immediate navigation
+                        const destination = link.getAttribute('href');
+                        setTimeout(() => {
+                            window.location.href = destination;
+                        }, 300); // 300ms delay
+                    }
+                });
+            });
+
+            // Gemini API Course Suggestion
+            const askGptBtn = document.getElementById('askGptBtn');
+            const modal = document.getElementById('suggestionModal');
+            const closeModalBtn = document.getElementById('closeModalBtn');
+            const loadingState = document.getElementById('loadingState');
+            const resultState = document.getElementById('resultState');
+            const reviewTitleEl = document.getElementById('reviewTitle');
+            const reviewBodyEl = document.getElementById('reviewBody');
+
+            askGptBtn.addEventListener('click', async () => {
+                await Tone.start();
+                synth.triggerAttackRelease("E4", "8n");
+                modal.classList.remove('hidden');
+                loadingState.classList.remove('hidden');
+                resultState.classList.add('hidden');
+
+                const courseTitle = "3D ANIMATION FACT SHORTS - JACK D FILMS STYLE";
+                const prompt = `You are a helpful and enthusiastic AI assistant for 'TECH SEEKER ACADEMY'. Your goal is to encourage potential students from Bangladesh to enroll in our courses. A user is asking for an opinion on the course: '${courseTitle}'.
+
+Generate a short, positive, and persuasive review of this course. Highlight the following benefits for a Bengali audience:
+- The potential to create a successful US-based YouTube channel and earn money online.
+- Learning to create viral, high-quality 3D animation shorts like 'Jack D Films' using only free AI tools, without needing an expensive PC or software.
+- The uniqueness of the course content and the step-by-step guidance provided.
+
+Your response MUST be in a JSON format with 'review_title' and 'review_body' keys. The response MUST be in Bengali (using Bangla script). The title should be catchy and the body should be persuasive.`;
+
+                const payload = {
+                    contents: [{
+                        parts: [{ text: prompt }]
+                    }],
+                    generationConfig: {
+                        responseMimeType: "application/json",
+                        responseSchema: {
+                            type: "OBJECT",
+                            properties: {
+                                "review_title": { "type": "STRING" },
+                                "review_body": { "type": "STRING" }
+                            },
+                            required: ["review_title", "review_body"]
+                        }
+                    }
+                };
+
+                const apiKey = "AIzaSyAz9NgC0LrClIzdouuaNQzbcsDl9h_yUo4"; // API key is now set
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+
+                try {
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`API request failed with status ${response.status}`);
+                    }
+
+                    const result = await response.json();
+                    
+                    if (result.candidates && result.candidates.length > 0 && result.candidates[0].content.parts.length > 0) {
+                        const text = result.candidates[0].content.parts[0].text;
+                        const suggestion = JSON.parse(text);
+    
+                        reviewTitleEl.textContent = suggestion.review_title;
+                        reviewBodyEl.textContent = suggestion.review_body;
+                    } else {
+                         throw new Error("Invalid response structure from API");
+                    }
+
+
+                } catch (error) {
+                    console.error("Error fetching course suggestion:", error);
+                    reviewTitleEl.textContent = "ত্রুটি";
+                    reviewBodyEl.textContent = "দুঃখিত, এই মুহূর্তে কোনো মতামত তৈরি করা সম্ভব হচ্ছে না। অনুগ্রহ করে কিছুক্ষণ পর আবার চেষ্টা করুন।";
+                } finally {
+                    loadingState.classList.add('hidden');
+                    resultState.classList.remove('hidden');
+                }
+            });
+
+            closeModalBtn.addEventListener('click', () => {
+                modal.classList.add('hidden');
+                Tone.start().then(() => {
+                    synth.triggerAttackRelease("A3", "8n");
+                });
+            });
+        });
+
+    </script>
+
+</body>
+</html>
