@@ -1,9 +1,3 @@
-<meta property="og:url" content="https://muntasintr.github.io/" />
-<meta property="og:type" content="website" />
-<meta property="og:title" content="Muntasintr – My Website" />
-<meta property="og:description" content="Welcome to my website – explore my projects and content here." />
-<meta property="og:image" content="https://muntasintr.github.io/preview.png" />
-<link rel="canonical" href="https://muntasintr.github.io/" />
 <!DOCTYPE html>
 <html lang="bn">
 <head>
@@ -11,27 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TECH SEEKER ACADEMY</title>
     
-    <meta property="og:title" content="TECH SEEKER ACADEMY">
-    <meta property="og:description" content="আপনার স্কিল ডেভেলপমেন্টের সেরা ঠিকানা। AI, 3D অ্যানিমেশন এবং কনটেন্ট ক্রিয়েশন শিখুন বাংলায়।">
-    <meta property="og:image" content="https://muntasintr.github.io/14.png">
-    <meta property="og:url" content="https://muntasintr.github.io/">
-    <meta property="og:type" content="website">
-    
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Teko:wght@700&family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
     
+    <!-- Tone.js for Sound Effects -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.7.77/Tone.js"></script>
+    
+    <!-- Three.js for 3D Background -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
     <style>
         /* Custom styles for applying fonts */
         body {
             font-family: 'Poppins', 'Hind Siliguri', sans-serif;
-            background-color: #0c111d; /* A darker, richer blue-black */
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+            overflow-x: hidden;
+            background-color: #000; /* Base background for effects */
         }
         
+        /* Page transition effect */
+        body.page-exit {
+            opacity: 0;
+            transform: scale(0.95);
+        }
+
         .font-bangla {
             font-family: 'Hind Siliguri', sans-serif;
         }
@@ -49,18 +51,20 @@
         .header-container {
             padding-top: 2rem;
             padding-bottom: 2rem;
+            border: 3px solid transparent;
+            border-radius: 10px;
+            animation: header-border-spark 8s linear infinite;
         }
 
         .header-title {
             font-size: clamp(2.5rem, 8vw, 5rem);
             font-weight: 700;
-            line-height: 1; /* Adjusted line-height */
+            line-height: 1;
             text-align: center;
             text-transform: uppercase;
-            white-space: nowrap; /* Prevents wrapping to new line */
+            white-space: nowrap;
         }
         
-        /* Letter pop animation */
         .header-title .letter {
             display: inline-block;
             transition: transform 0.3s ease, color 0.3s ease;
@@ -72,11 +76,15 @@
 
         .header-title .letter.white { color: #ffffff; }
         .header-title .letter.orange { color: #f97316; }
-        .header-title .letter.space { margin: 0 0.1em; } /* For spacing between words */
+        .header-title .letter.space { margin: 0 0.1em; }
 
         .header-title .letter:hover {
             transform: translateY(-20px) scale(1.1);
-            color: #22d3ee; /* Cyan hover color */
+            color: #22d3ee;
+        }
+
+        .spark-source {
+            animation: text-spark 8s linear infinite;
         }
 
         /* Custom glow effect for cards */
@@ -102,87 +110,191 @@
         .published-card-glow:hover {
             box-shadow: 0 0 30px rgba(168, 85, 247, 0.6), 0 0 50px rgba(168, 85, 247, 0.4);
         }
+        
+        /* FAQ accordion styles */
+        .faq-item summary {
+            cursor: pointer;
+            outline: none;
+        }
+        .faq-item[open] summary {
+            font-weight: 600;
+            color: #a855f7; /* Purple color when open */
+        }
+        
+        /* Purchase counter animation */
+        .counter-pop {
+            animation: pop 0.6s ease-in-out;
+        }
+        @keyframes pop {
+            0% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.05); opacity: 1; }
+            100% { transform: scale(1); opacity: 1; }
+        }
 
+        /* Motivational Text Slider Styles */
+        .text-slider-container {
+            height: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        .motivational-text {
+            position: absolute;
+            width: 100%;
+            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+            opacity: 0;
+            transform: translateX(20px);
+        }
+        .motivational-text.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .motivational-text.exiting {
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+        
+        /* Breathing light effect for headings */
+        .breathing-heading {
+            animation: breathing-light 3s infinite ease-in-out;
+        }
+        @keyframes breathing-light {
+            0% { text-shadow: 0 0 5px rgba(34, 211, 238, 0.3); }
+            50% { text-shadow: 0 0 20px rgba(34, 211, 238, 0.8), 0 0 30px rgba(34, 211, 238, 0.5); }
+            100% { text-shadow: 0 0 5px rgba(34, 211, 238, 0.3); }
+        }
+        
+        /* Spark Animation */
+        @keyframes text-spark {
+            0%, 100% { text-shadow: none; }
+            50% {
+                text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 40px #22d3ee, 0 0 80px #22d3ee;
+            }
+        }
+        @keyframes header-border-spark {
+            0%, 100% { border-color: transparent; box-shadow: none; }
+            50% {
+                border-color: #22d3ee;
+                box-shadow: 0 0 20px #22d3ee, inset 0 0 10px #22d3ee;
+            }
+        }
+        
+        /* --- Styles for Background Effects --- */
+        #three-bg, #combinedCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        #three-bg {
+            z-index: -2; /* Deepest background layer */
+        }
+        #combinedCanvas {
+            z-index: -1; /* Layer on top of 3D, behind content */
+        }
+        
+        /* Make content backgrounds semi-transparent to see the effect through them */
+        .bg-gray-900 {
+             background-color: rgba(12, 2, 29, 0.8) !important;
+        }
+        .bg-black {
+             background-color: rgba(0, 0, 0, 0.85) !important;
+        }
+        .bg-gray-800 {
+            background-color: rgba(31, 41, 55, 0.85) !important;
+        }
     </style>
 </head>
-<body class="bg-gray-900 text-white">
+<body class="text-white">
 
-    <header class="bg-black shadow-lg shadow-cyan-500/20">
-        <div class="container mx-auto text-center px-4 overflow-x-auto header-container">
+    <!-- Containers for Background Effects -->
+    <div id="three-bg"></div>
+    <canvas id="combinedCanvas"></canvas>
+
+    <!-- Header Section -->
+    <header class="bg-black shadow-lg">
+        <div class="container mx-auto text-center px-4 header-container w-full">
             <h1 class="header-title font-teko">
                 <span class="letter white">T</span><span class="letter white">E</span><span class="letter white">C</span><span class="letter white">H</span>
                 <span class="letter space"></span>
                 <span class="letter orange">S</span><span class="letter orange">E</span><span class="letter orange">E</span><span class="letter orange">K</span><span class="letter orange">E</span><span class="letter orange">R</span>
                 <span class="letter space"></span>
-                <span class="letter white">A</span><span class="letter white">C</span><span class="letter white">A</span><span class="letter white">D</span><span class="letter white">E</span><span class="letter white">M</span><span class="letter white">Y</span>
+                <span class="letter white spark-source">ACADEMY</span>
             </h1>
-            <p class="text-gray-300 mt-2 text-lg font-bangla">আপনার স্কিল ডেভেলপমেন্টের সেরা ঠিকানা</p>
+            <div class="text-slider-container text-gray-300 mt-2 text-lg font-bangla">
+                <p id="motivationalText" class="motivational-text active">আপনার স্কিল ডেভেলপমেন্টের সেরা ঠিকানা</p>
+            </div>
         </div>
     </header>
 
     <main class="container mx-auto px-4 py-16">
 
+        <!-- Published Courses Section -->
         <section id="published-courses" class="mb-20">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 font-bangla"><span class="text-cyan-400">প্রকাশিত</span> কোর্স</h2>
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 font-bangla breathing-heading"><span class="text-cyan-400">প্রকাশিত</span> কোর্স</h2>
             <div class="flex flex-col items-center">
-                <a href="payment.html" class="course-link block">
-                    <div class="bg-gray-900 border border-purple-900 rounded-xl overflow-hidden card-glow published-card-glow max-w-sm">
-                        <img src="https://api.dicebear.com/8.x/shapes/svg?seed=3D-Animation&scale=85&radius=10&backgroundType=gradientLinear&backgroundColor=a855f7,0c111d" alt="3D Animation Course" class="w-full h-56 object-cover">
+                <div class="bg-gray-900 border border-purple-900 rounded-xl overflow-hidden card-glow published-card-glow max-w-sm">
+                    <div class="relative group">
+                        <!-- Course Image -->
+                        <img src="3d-animation-course.png" onerror="this.onerror=null;this.src='https://placehold.co/800x450/a855f7/ffffff.png?text=Course+Image';" alt="3D Animation Course" class="w-full h-56 object-cover">
+                        <!-- FAQ Overlay -->
+                        <div class="absolute inset-0 bg-black bg-opacity-90 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-500 rounded-t-xl flex items-center justify-center p-6">
+                            <div class="text-left w-full h-full overflow-y-auto">
+                                <h4 class="text-2xl font-bold text-purple-400 mb-4 text-center font-bangla">সাধারণ জিজ্ঞাসা</h4>
+                                <details class="faq-item bg-gray-800 p-3 rounded-lg mb-2">
+                                    <summary class="font-semibold font-bangla">এই কোর্স করে কি আয় করা সম্ভব?</summary>
+                                    <p class="mt-2 text-gray-300 font-bangla text-sm">অবশ্যই! এই কোর্সের মূল উদ্দেশ্যই হলো আপনাকে US-ভিত্তিক একটি ইউটিউব চ্যানেল তৈরি করে প্রতি মাসে $1000+ (প্রায় ১ লক্ষ টাকা) আয় করার জন্য প্রস্তুত করা। 💰</p>
+                                </details>
+                                <details class="faq-item bg-gray-800 p-3 rounded-lg mb-2">
+                                    <summary class="font-semibold font-bangla">আমি কি মোবাইল দিয়ে এই কাজ করতে পারবো?</summary>
+                                    <p class="mt-2 text-gray-300 font-bangla text-sm">এই কোর্সটা এমনভাবে ডিজাইন করা হয়েছে যাতে একটি সফটওয়্যার আপনাকে প্রোভাইড করা যায় এবং সেই একই সফটওয়্যারের মধ্যেই আপনি কোর্সের ভিডিও, ডেটা ম্যানেজার এবং সম্পূর্ণ গাইডলাইন পেয়ে যাবেন। এই সফটওয়্যারটি পিসি ব্যবহারকারীদের জন্য তৈরি করা হয়েছে।</p>
+                                </details>
+                                <details class="faq-item bg-gray-800 p-3 rounded-lg">
+                                    <summary class="font-semibold font-bangla">কোর্স শেষে সাপোর্ট কিভাবে পাবো?</summary>
+                                    <p class="mt-2 text-gray-300 font-bangla text-sm">কোর্স শেষে আমাদের একটি প্রিমিয়াম টেলিগ্রাম কমিউনিটিতে যোগ দেওয়ার সুযোগ রয়েছে। নির্দিষ্ট ফি-এর বিনিময়ে আপনি সেখানে লাইফটাইম অ্যাক্সেস পাবেন। এই গ্রুপে কোর্স সম্পর্কিত সকল আপডেট শেয়ার করা হয় এবং সদস্যরা নিজেদের মধ্যে আলোচনা করে অনেক সমস্যার সমাধান খুঁজে নিতে পারেন। আমিও সেখানে যথাসম্ভব সাহায্য করার চেষ্টা করি।</p>
+                                </details>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="2payment.html" class="course-link block">
                         <div class="p-6">
                             <h3 class="text-xl font-bold text-white mb-3">3D ANIMATION FACT SHORTS - JACK D FILMS STYLE</h3>
                             <div class="flex items-baseline justify-between my-4">
-                                 <p class="text-3xl font-bold text-green-400">1200৳</p>
-                                 <p class="text-lg text-red-500 line-through ml-2">1500৳</p>
+                                 <p class="text-3xl font-bold text-green-400">2000৳</p>
+                                 <p class="text-lg text-red-500 line-through ml-2">2500৳</p>
+                            </div>
+                             <!-- Live Purchase Counter -->
+                            <div id="purchase-counter" class="mt-4 text-center bg-gray-800 text-yellow-300 py-2 px-4 rounded-lg font-semibold font-bangla">
+                                <!-- Counter will be injected here -->
                             </div>
                             <div id="timer" class="mt-4 text-center bg-red-600 text-white py-2 px-4 rounded-lg font-semibold font-bangla">
-                                </div>
+                                <!-- Countdown Timer will be injected here -->
+                            </div>
                         </div>
-                    </div>
-                </a>
+                    </a>
+                </div>
                 <button id="askGptBtn" class="mt-6 bg-purple-600 text-white font-bold py-3 px-6 rounded-full hover:bg-purple-700 transition-all duration-300 shadow-lg shadow-purple-500/40 transform hover:scale-105 font-bangla">
                     ✨ ChatGPT কে জিজ্ঞেস করুন এই কোর্সটি কেমন হবে?
                 </button>
             </div>
         </section>
 
+        <!-- Upcoming Courses Section -->
         <section id="upcoming-courses" class="mb-20">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 font-bangla"><span class="text-cyan-400">শীঘ্রই</span> আসছে</h2>
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 font-bangla breathing-heading"><span class="text-cyan-400">শীঘ্রই</span> আসছে</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden card-glow upcoming-card-glow course-link">
-                    <img src="https://api.dicebear.com/8.x/shapes/svg?seed=AI-Tools&scale=85&radius=10&backgroundType=gradientLinear&backgroundColor=22d3ee,0c111d" alt="AI Content Creation" class="w-full h-48 object-cover">
-                    <div class="p-5"><h3 class="text-lg font-semibold h-16">LEARN CONTENT CREATION AI TOOLS (A-Z)</h3><p class="text-xl font-bold text-cyan-400 mt-2">00৳</p></div>
-                </div>
-                <div class="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden card-glow upcoming-card-glow course-link">
-                    <img src="https://api.dicebear.com/8.x/shapes/svg?seed=Social-Media&scale=85&radius=10&backgroundType=gradientLinear&backgroundColor=a855f7,0c111d" alt="Social Media Automation" class="w-full h-48 object-cover">
-                    <div class="p-5"><h3 class="text-lg font-semibold h-16">ALL SOCIAL MEDIA AUTOMATION WITH AI</h3><p class="text-xl font-bold text-cyan-400 mt-2">00৳</p></div>
-                </div>
-                <div class="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden card-glow upcoming-card-glow course-link">
-                    <img src="https://api.dicebear.com/8.x/shapes/svg?seed=SEO&scale=85&radius=10&backgroundType=gradientLinear&backgroundColor=ec4899,0c111d" alt="YouTube SEO" class="w-full h-48 object-cover">
-                    <div class="p-5"><h3 class="text-lg font-semibold h-16">MASTER YOUTUBE VIDEO SEO WITH AI</h3><p class="text-xl font-bold text-cyan-400 mt-2">00৳</p></div>
-                </div>
-                <div class="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden card-glow upcoming-card-glow course-link">
-                    <img src="https://api.dicebear.com/8.x/shapes/svg?seed=Pro-Tricks&scale=85&radius=10&backgroundType=gradientLinear&backgroundColor=84cc16,0c111d" alt="Pro Account Tips" class="w-full h-48 object-cover">
-                    <div class="p-5"><h3 class="text-lg font-semibold h-16">PRO ACCOUNT FREE METHOD TIPS & TRICKS</h3><p class="text-xl font-bold text-cyan-400 mt-2">00৳</p></div>
-                </div>
-                 <div class="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden card-glow upcoming-card-glow course-link">
-                    <img src="https://api.dicebear.com/8.x/shapes/svg?seed=Sponsor&scale=85&radius=10&backgroundType=gradientLinear&backgroundColor=f59e0b,0c111d" alt="Sponsor and Affiliation" class="w-full h-48 object-cover">
-                    <div class="p-5"><h3 class="text-lg font-semibold h-16">UNLIMITED SPONSOR & AFFILIATION FOR 10X INCOME</h3><p class="text-xl font-bold text-cyan-400 mt-2">00৳</p></div>
-                </div>
-                <div class="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden card-glow upcoming-card-glow course-link">
-                    <img src="https://api.dicebear.com/8.x/shapes/svg?seed=Video-Editing&scale=85&radius=10&backgroundType=gradientLinear&backgroundColor=ef4444,0c111d" alt="Video Editing" class="w-full h-48 object-cover">
-                    <div class="p-5"><h3 class="text-lg font-semibold h-16">VIDEO EDITING BASIC FOR CONTENT CREATION</h3><p class="text-xl font-bold text-cyan-400 mt-2">00৳</p></div>
-                </div>
-                <div class="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden card-glow upcoming-card-glow course-link">
-                    <img src="https://api.dicebear.com/8.x/shapes/svg?seed=Script-Writing&scale=85&radius=10&backgroundType=gradientLinear&backgroundColor=14b8a6,0c111d" alt="Script Writing" class="w-full h-48 object-cover">
-                    <div class="p-5"><h3 class="text-lg font-semibold h-16">FUNDAMENTAL OF SCRIPT WRITING & STORYTELLING</h3><p class="text-xl font-bold text-cyan-400 mt-2">00৳</p></div>
-                </div>
-                <div class="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden card-glow upcoming-card-glow course-link">
-                    <img src="https://api.dicebear.com/8.x/shapes/svg?seed=Thumbnail&scale=85&radius=10&backgroundType=gradientLinear&backgroundColor=6366f1,0c111d" alt="Thumbnail Fundamental" class="w-full h-48 object-cover">
-                    <div class="p-5"><h3 class="text-lg font-semibold h-16">THUMBNAIL FUNDAMENTAL</h3><p class="text-xl font-bold text-cyan-400 mt-2">00৳</p></div>
-                </div>
+                <div class="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden card-glow upcoming-card-glow course-link"><img src="https://api.dicebear.com/8.x/shapes/svg?seed=AI-Tools&scale=85&radius=10&backgroundType=gradientLinear&backgroundColor=22d3ee,0c111d" alt="AI Content Creation" class="w-full h-48 object-cover"><div class="p-5"><h3 class="text-lg font-semibold h-16">LEARN CONTENT CREATION AI TOOLS (A-Z)</h3><p class="text-xl font-bold text-cyan-400 mt-2">00৳</p></div></div>
+                <div class="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden card-glow upcoming-card-glow course-link"><img src="https://api.dicebear.com/8.x/shapes/svg?seed=Social-Media&scale=85&radius=10&backgroundType=gradientLinear&backgroundColor=a855f7,0c111d" alt="Social Media Automation" class="w-full h-48 object-cover"><div class="p-5"><h3 class="text-lg font-semibold h-16">ALL SOCIAL MEDIA AUTOMATION WITH AI</h3><p class="text-xl font-bold text-cyan-400 mt-2">00৳</p></div></div>
+                <div class="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden card-glow upcoming-card-glow course-link"><img src="https://api.dicebear.com/8.x/shapes/svg?seed=SEO&scale=85&radius=10&backgroundType=gradientLinear&backgroundColor=ec4899,0c111d" alt="YouTube SEO" class="w-full h-48 object-cover"><div class="p-5"><h3 class="text-lg font-semibold h-16">MASTER YOUTUBE VIDEO SEO WITH AI</h3><p class="text-xl font-bold text-cyan-400 mt-2">00৳</p></div></div>
+                <div class="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden card-glow upcoming-card-glow course-link"><img src="https://api.dicebear.com/8.x/shapes/svg?seed=Pro-Tricks&scale=85&radius=10&backgroundType=gradientLinear&backgroundColor=84cc16,0c111d" alt="Pro Account Tips" class="w-full h-48 object-cover"><div class="p-5"><h3 class="text-lg font-semibold h-16">PRO ACCOUNT FREE METHOD TIPS & TRICKS</h3><p class="text-xl font-bold text-cyan-400 mt-2">00৳</p></div></div>
+                <div class="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden card-glow upcoming-card-glow course-link"><img src="https://api.dicebear.com/8.x/shapes/svg?seed=Sponsor&scale=85&radius=10&backgroundType=gradientLinear&backgroundColor=f59e0b,0c111d" alt="Sponsor and Affiliation" class="w-full h-48 object-cover"><div class="p-5"><h3 class="text-lg font-semibold h-16">UNLIMITED SPONSOR & AFFILIATION FOR 10X INCOME</h3><p class="text-xl font-bold text-cyan-400 mt-2">00৳</p></div></div>
+                <div class="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden card-glow upcoming-card-glow course-link"><img src="https://api.dicebear.com/8.x/shapes/svg?seed=Video-Editing&scale=85&radius=10&backgroundType=gradientLinear&backgroundColor=ef4444,0c111d" alt="Video Editing" class="w-full h-48 object-cover"><div class="p-5"><h3 class="text-lg font-semibold h-16">VIDEO EDITING BASIC FOR CONTENT CREATION</h3><p class="text-xl font-bold text-cyan-400 mt-2">00৳</p></div></div>
+                <div class="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden card-glow upcoming-card-glow course-link"><img src="https://api.dicebear.com/8.x/shapes/svg?seed=Script-Writing&scale=85&radius=10&backgroundType=gradientLinear&backgroundColor=14b8a6,0c111d" alt="Script Writing" class="w-full h-48 object-cover"><div class="p-5"><h3 class="text-lg font-semibold h-16">FUNDAMENTAL OF SCRIPT WRITING & STORYTELLING</h3><p class="text-xl font-bold text-cyan-400 mt-2">00৳</p></div></div>
+                <div class="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden card-glow upcoming-card-glow course-link"><img src="https://api.dicebear.com/8.x/shapes/svg?seed=Thumbnail&scale=85&radius=10&backgroundType=gradientLinear&backgroundColor=6366f1,0c111d" alt="Thumbnail Fundamental" class="w-full h-48 object-cover"><div class="p-5"><h3 class="text-lg font-semibold h-16">THUMBNAIL FUNDAMENTAL</h3><p class="text-xl font-bold text-cyan-400 mt-2">00৳</p></div></div>
             </div>
         </section>
 
+        <!-- Mentor Section -->
         <section id="mentor" class="py-20 bg-black rounded-xl my-20">
             <div class="container mx-auto px-6">
                 <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 font-bangla">আপনার <span class="text-cyan-400">মেন্টরের</span> সাথে পরিচিত হন</h2>
@@ -190,22 +302,20 @@
                     <img src="14.png" alt="Mentor" class="w-56 h-56 md:w-64 md:h-64 rounded-full object-cover border-4 border-cyan-400 shadow-xl shadow-cyan-400/30">
                     <div class="md:w-1/2 text-center md:text-left">
                         <h3 class="text-3xl font-bold text-cyan-400">Tasin</h3>
-                        <p class="mt-4 text-md text-gray-300">
-                            YouTuber | Creative Strategist | AI-Driven Content Creator | Prompt Engineer | Tech Reviewer & Educator | Automation Enthusiast
-                        </p>
+                        <p class="mt-4 text-md text-gray-300">YouTuber | Creative Strategist | AI-Driven Content Creator | Prompt Engineer | Tech Reviewer & Educator | Automation Enthusiast</p>
                     </div>
                 </div>
             </div>
         </section>
 
+        <!-- YouTube Channel Link Section -->
         <section class="text-center mb-20">
-             <a href="https://www.youtube.com/@techseeker-tasin" target="_blank" class="inline-block bg-cyan-500 text-white font-bold text-lg py-3 px-8 rounded-full hover:bg-cyan-600 transition-all duration-300 shadow-lg shadow-cyan-500/40 transform hover:scale-105">
-                আমাদের ইউটিউব চ্যানেল ভিজিট করুন
-            </a>
+             <a href="https://www.youtube.com/@techseeker-tasin" target="_blank" class="inline-block bg-cyan-500 text-white font-bold text-lg py-3 px-8 rounded-full hover:bg-cyan-600 transition-all duration-300 shadow-lg shadow-cyan-500/40 transform hover:scale-105">আমাদের ইউটিউব চ্যানেল ভিজিট করুন</a>
         </section>
 
+        <!-- YouTube Section -->
         <section id="youtube-channel" class="py-20">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 font-bangla">আমাদের <span class="text-cyan-400">জনপ্রিয়</span> ভিডিও</h2>
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 font-bangla">আমাদের <span class="text-cyan-400">জনপ্রিয়</span> ভিডিও</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div class="aspect-w-16 aspect-h-9"><iframe src="https://www.youtube.com/embed/0HGgh99JMac" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="rounded-lg shadow-xl"></iframe></div>
                 <div class="aspect-w-16 aspect-h-9"><iframe src="https://www.youtube.com/embed/97u8PgjXkdo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="rounded-lg shadow-xl"></iframe></div>
@@ -214,34 +324,31 @@
 
     </main>
 
+    <!-- Footer -->
     <footer class="bg-black border-t border-cyan-500/30 py-8">
         <div class="container mx-auto text-center text-gray-400">
             <p class="font-bangla text-xl mb-4">আমাদের সাথে যুক্ত হন</p>
             <div class="flex justify-center space-x-6 mb-6">
-                <a href="https://wa.me/YOUR_WHATSAPP_NUMBER" target="_blank" class="text-gray-400 hover:text-cyan-400 transition-colors" aria-label="WhatsApp"><svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.894 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.886-.004 2.114.65 4.135 1.866 5.83l-1.157 4.254 4.418-1.157zm9.266-5.615a.908.908 0 0 0-.908-.907c-.422 0-.749.19-1.066.363s-1.103 1.34-1.293 1.562c-.19.222-.38.232-.665.043-.285-.189-1.177-.435-2.241-1.373-.828-.731-1.38-1.636-1.555-1.912-.175-.276-.06-."/></svg></a>
-                <a href="https://shorturl.at/RqzYI" target="_blank" class="text-gray-400 hover:text-cyan-400 transition-colors" aria-label="Facebook"><svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg></a>
-                <a href="https://t.me/techseekertasin" target="_blank" class="text-gray-400 hover:text-cyan-400 transition-colors" aria-label="Telegram"><svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M11.944 0C5.356 0 0 5.356 0 11.944s5.356 11.944 11.944 11.944 11.944-5.356 11.944-11.944S18.532 0 11.944 0zm5.624 8.24l-2.1 9.84c-.16.744-.584.92-1.2.584l-3.232-2.384-1.56 1.5c-.168.168-.312.312-.624.312l.224-3.288 5.936-5.368c.264-.232-.04-.368-.408-.136L8.248 12.32 5.024 11.3c-.744-.24-.744-.736.144-1.088l11.2-4.336c.624-.24.968.144.8.964z"/></svg></a>
-                <a href="https://www.youtube.com/@techseeker-tasin" target="_blank" class="text-gray-400 hover:text-cyan-400 transition-colors" aria-label="YouTube"><svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg></a>
+                <a href="https://www.whatsapp.com/channel/0029VbB1wvIB4hdaHwPZg224" target="_blank" class="transition-transform transform hover:scale-110" aria-label="WhatsApp"><img src="whatsapp.png" alt="WhatsApp" class="w-10 h-10"></a>
+                <a href="https://shorturl.at/RqzYI" target="_blank" class="transition-transform transform hover:scale-110" aria-label="Facebook"><img src="facebook.png" alt="Facebook" class="w-10 h-10"></a>
+                <a href="https://t.me/techseekertasin" target="_blank" class="transition-transform transform hover:scale-110" aria-label="Telegram"><img src="telegram.png" alt="Telegram" class="w-10 h-10"></a>
+                <a href="https://www.youtube.com/@techseeker-tasin" target="_blank" class="transition-transform transform hover:scale-110" aria-label="YouTube"><img src="youtube.png" alt="YouTube" class="w-10 h-10"></a>
             </div>
             <p>&copy; 2025 TECH SEEKER ACADEMY. All Rights Reserved.</p>
         </div>
     </footer>
 
+    <!-- Suggestion Modal -->
     <div id="suggestionModal" class="hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
         <div class="bg-gray-800 rounded-xl p-8 max-w-2xl w-full mx-4 shadow-2xl shadow-purple-500/30">
             <div id="modalContent">
                 <div id="loadingState" class="text-center">
-                    <svg class="animate-spin h-10 w-10 text-purple-400 mx-auto mb-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                    </svg>
+                    <svg class="animate-spin h-10 w-10 text-purple-400 mx-auto mb-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
                     <h3 class="text-2xl font-bold text-white font-bangla">AI এক্সপার্টের মতামত লোড হচ্ছে...</h3>
                 </div>
                 <div id="resultState" class="hidden">
                      <h3 id="reviewTitle" class="text-3xl font-bold text-purple-400 mb-4 text-center font-bangla"></h3>
-                     <div class="bg-gray-900 p-6 rounded-lg">
-                         <p id="reviewBody" class="text-gray-300 mt-2 text-lg font-bangla"></p>
-                     </div>
+                     <div class="bg-gray-900 p-6 rounded-lg"><p id="reviewBody" class="text-gray-300 mt-2 text-lg font-bangla"></p></div>
                 </div>
             </div>
             <div class="text-center mt-6">
@@ -250,62 +357,203 @@
         </div>
     </div>
 
-
+    <!-- 3D Space Background Script -->
     <script>
-        // Countdown Timer Script
-        const countdown = () => {
-            const countDate = new Date();
-            countDate.setDate(countDate.getDate() + 2); // Set countdown for 2 days
-            const timerElement = document.getElementById('timer');
-            if (!timerElement) return;
+        window.addEventListener('load', function() {
+            let scene, camera, renderer, clock, stars;
+            const spaceObjects = [];
+            const meteors = [];
+            const asteroids = [];
+            const textureUrls = {
+                moon: 'https://raw.githubusercontent.com/mrdoob/three.js/dev/examples/textures/planets/moon_1024.jpg',
+                earth: 'https://raw.githubusercontent.com/mrdoob/three.js/dev/examples/textures/planets/earth_atmos_2048.jpg',
+                asteroid: 'https://raw.githubusercontent.com/mrdoob/three.js/dev/examples/textures/planets/plutomap1k.jpg',
+                lava: 'https://raw.githubusercontent.com/mrdoob/three.js/dev/examples/textures/lava/lavatile.jpg',
+                neptune: 'https://raw.githubusercontent.com/mrdoob/three.js/dev/examples/textures/planets/neptunemap.jpg'
+            };
 
-            const interval = setInterval(() => {
-                const now = new Date().getTime();
-                const distance = countDate - now;
-
-                if (distance < 0) {
-                    clearInterval(interval);
-                    timerElement.innerHTML = "অফারটি শেষ হয়ে গেছে";
-                    return;
-                }
-
-                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-                timerElement.innerHTML = `অফার শেষ হচ্ছে: ${days} দিন ${hours} ঘন্টা ${minutes} মিনিট ${seconds} সেকেন্ড`;
-            }, 1000);
-        };
-        countdown();
-
-        // Sound Effect Script
-        document.addEventListener('DOMContentLoaded', () => {
-            const synth = new Tone.Synth({
-                oscillator: { type: 'sine' },
-                envelope: { attack: 0.005, decay: 0.1, sustain: 0.3, release: 1 }
-            }).toDestination();
-
-            // Generic click sound for links
-            const courseLinks = document.querySelectorAll('.course-link');
-            courseLinks.forEach(link => {
-                link.addEventListener('click', (e) => {
-                    Tone.start().then(() => {
-                        synth.triggerAttackRelease("C4", "8n");
-                    });
-
-                    // If it's a link, delay navigation to allow sound to play
-                    if (link.tagName === 'A' && link.getAttribute('href')) {
-                        e.preventDefault(); // Prevent immediate navigation
-                        const destination = link.getAttribute('href');
-                        setTimeout(() => {
-                            window.location.href = destination;
-                        }, 300); // 300ms delay
-                    }
+            function initThree() {
+                const container = document.getElementById('three-bg');
+                if (!container) return;
+                const textureLoader = new THREE.TextureLoader();
+                clock = new THREE.Clock();
+                scene = new THREE.Scene();
+                const cubeTextureLoader = new THREE.CubeTextureLoader();
+                const skyboxTexture = cubeTextureLoader.setPath('https://raw.githubusercontent.com/mrdoob/three.js/dev/examples/textures/cube/milkyway/').load(['dark-s_px.jpg', 'dark-s_nx.jpg', 'dark-s_py.jpg', 'dark-s_ny.jpg', 'dark-s_pz.jpg', 'dark-s_nz.jpg']);
+                scene.background = skyboxTexture;
+                camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 5000);
+                camera.position.set(0, 50, 300);
+                renderer = new THREE.WebGLRenderer({ antialias: true });
+                renderer.setSize(window.innerWidth, window.innerHeight);
+                renderer.setPixelRatio(window.devicePixelRatio);
+                container.appendChild(renderer.domElement);
+                const objectsToCreate = [{ texture: textureUrls.moon, size: 80, pos: new THREE.Vector3(-200, 0, -300) }, { texture: textureUrls.earth, size: 120, pos: new THREE.Vector3(300, 50, -600) }, { texture: textureUrls.lava, size: 50, pos: new THREE.Vector3(-400, 150, -800) }, { texture: textureUrls.neptune, size: 100, pos: new THREE.Vector3(500, -150, -1000) }];
+                objectsToCreate.forEach(obj => {
+                    const material = new THREE.MeshStandardMaterial({ map: textureLoader.load(obj.texture), roughness: 0.9 });
+                    const spaceObject = new THREE.Mesh(new THREE.SphereGeometry(obj.size, 64, 64), material);
+                    spaceObject.position.copy(obj.pos);
+                    spaceObject.rotation.set(Math.random(), Math.random(), Math.random());
+                    spaceObjects.push(spaceObject);
+                    scene.add(spaceObject);
                 });
-            });
+                const asteroidGeometry = new THREE.DodecahedronGeometry(1, 0);
+                const asteroidMaterial = new THREE.MeshStandardMaterial({ map: textureLoader.load(textureUrls.asteroid), roughness: 0.8, metalness: 0.5 });
+                for (let i = 0; i < 500; i++) {
+                    const asteroid = new THREE.Mesh(asteroidGeometry, asteroidMaterial);
+                    const [x, y, z] = Array(3).fill().map(() => THREE.MathUtils.randFloatSpread(2000));
+                    asteroid.position.set(x, y, z);
+                    asteroid.scale.setScalar(Math.random() * 10 + 5);
+                    asteroid.rotation.set(Math.random() * Math.PI, Math.random() * Math.PI, Math.random() * Math.PI);
+                    asteroids.push(asteroid);
+                    scene.add(asteroid);
+                }
+                const starVertices = [];
+                for (let i = 0; i < 25000; i++) {
+                    const x = (Math.random() - 0.5) * 4000; const y = (Math.random() - 0.5) * 4000; const z = (Math.random() - 0.5) * 4000;
+                    starVertices.push(x, y, z);
+                }
+                const starGeometry = new THREE.BufferGeometry();
+                starGeometry.setAttribute('position', new THREE.Float32BufferAttribute(starVertices, 3));
+                const starMaterial = new THREE.PointsMaterial({ color: 0xffffff, size: 1.5 });
+                stars = new THREE.Points(starGeometry, starMaterial);
+                scene.add(stars);
+                const ambientLight = new THREE.AmbientLight(0x404040, 1.0);
+                scene.add(ambientLight);
+                const directionalLight = new THREE.DirectionalLight(0xffffff, 1.5);
+                directionalLight.position.set(300, 100, 200);
+                scene.add(directionalLight);
+                window.addEventListener('resize', onWindowResize, false);
+            }
+            function onWindowResize() {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            }
+            function createMeteor() {
+                const meteor = new THREE.Mesh(new THREE.SphereGeometry(0.5, 8, 8), new THREE.MeshBasicMaterial({ color: 0xfff5b0 }));
+                const trail = new THREE.Line(new THREE.BufferGeometry(), new THREE.LineBasicMaterial({ color: 0xfff5b0, opacity: 0.6, transparent: true }));
+                meteor.add(trail);
+                meteor.position.set((Math.random() - 0.5) * 1000, (Math.random() - 0.5) * 1000, -1500);
+                meteor.velocity = new THREE.Vector3((Math.random() - 0.5) * 4, (Math.random() - 0.5) * 4, Math.random() * 10 + 10);
+                scene.add(meteor);
+                meteors.push(meteor);
+            }
+            function animateThree() {
+                requestAnimationFrame(animateThree);
+                const elapsedTime = clock.getElapsedTime();
+                spaceObjects.forEach(obj => { obj.rotation.y += 0.001; });
+                stars.rotation.y += 0.0001;
+                asteroids.forEach(asteroid => { asteroid.rotation.x += 0.001; asteroid.rotation.y += 0.002; });
+                if (Math.random() < 0.03) { createMeteor(); }
+                meteors.forEach((meteor, index) => {
+                    meteor.position.add(meteor.velocity);
+                    const trailPoints = [new THREE.Vector3(0, 0, 0), meteor.velocity.clone().multiplyScalar(-10)];
+                    meteor.children[0].geometry.setFromPoints(trailPoints);
+                    if (meteor.position.z > 500) { scene.remove(meteor); meteors.splice(index, 1); }
+                });
+                camera.position.z -= 0.2;
+                camera.position.x = Math.sin(elapsedTime * 0.1) * 100;
+                camera.position.y = 50 + Math.cos(elapsedTime * 0.1) * 50;
+                camera.lookAt(new THREE.Vector3(0, 0, -500));
+                if (camera.position.z < -1000) { camera.position.z = 500; }
+                renderer.render(scene, camera);
+            }
+            initThree();
+            animateThree();
+        });
+    </script>
+    
+            <!-- Combined Original Page & Aurora Orbiter Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Aurora Orbiter Effect ---
+            const canvas = document.getElementById('combinedCanvas');
+            if (canvas) {
+                const ctx = canvas.getContext('2d');
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+                const mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+                const colors = ['#00ffff', '#7df9ff', '#ffffff', '#c0fefc'];
+                const auroraParticles = [];
+                let hue = 120;
+                const orbiterParticles = [];
+                const numOrbiterParticles = 30;
+                window.addEventListener('mousemove', (event) => {
+                    mouse.x = event.x; mouse.y = event.y;
+                    for (let i = 0; i < 3; i++) { auroraParticles.push(new AuroraParticle(mouse.x, mouse.y)); }
+                });
+                class AuroraParticle {
+                    constructor(x, y) { this.x = x; this.y = y; this.size = Math.random() * 2 + 1; this.speedX = Math.random() * 2 - 1; this.speedY = Math.random() * 2 - 1; this.color = `hsl(${hue}, 100%, 50%)`; this.life = 1; this.history = []; }
+                    update() { this.history.unshift({ x: this.x, y: this.y }); if (this.history.length > 20) { this.history.pop(); } this.x += this.speedX + (Math.random() - 0.5) * 2; this.y += this.speedY + (Math.random() - 0.5) * 2; this.life -= 0.01; }
+                    draw() { ctx.beginPath(); if (this.history.length > 1) { ctx.moveTo(this.history[0].x, this.history[0].y); for (let i = 1; i < this.history.length; i++) { ctx.lineTo(this.history[i].x, this.history[i].y); } ctx.lineWidth = this.size; ctx.strokeStyle = this.color; ctx.globalAlpha = this.life; ctx.stroke(); } ctx.globalAlpha = 1; }
+                }
+                class OrbiterParticle {
+                    constructor(index) { this.index = index; this.angle = (index / numOrbiterParticles) * Math.PI * 2; this.radius = 25 + Math.random() * 15; this.x = mouse.x + Math.cos(this.angle) * this.radius; this.y = mouse.y + Math.sin(this.angle) * this.radius; this.size = Math.random() * 2 + 1; this.color = colors[Math.floor(Math.random() * colors.length)]; this.speed = 0.05 + Math.random() * 0.02; this.history = []; }
+                    update() { this.history.unshift({ x: this.x, y: this.y }); if (this.history.length > 10) { this.history.pop(); } this.angle += this.speed; const targetX = mouse.x + Math.cos(this.angle) * this.radius; const targetY = mouse.y + Math.sin(this.angle) * this.radius; this.x += (targetX - this.x) * 0.1; this.y += (targetY - this.y) * 0.1; }
+                    draw() { for (let i = 0; i < this.history.length; i++) { const pos = this.history[i]; const opacity = 1 - (i / this.history.length); ctx.beginPath(); ctx.arc(pos.x, pos.y, this.size * (1 - i / this.history.length), 0, Math.PI * 2); ctx.fillStyle = this.color; ctx.globalAlpha = opacity * 0.5; ctx.fill(); } ctx.globalAlpha = 1; ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fillStyle = this.color; ctx.shadowColor = this.color; ctx.shadowBlur = 15; ctx.fill(); ctx.shadowBlur = 0; }
+                }
+                function initAurora() { for (let i = 0; i < numOrbiterParticles; i++) { orbiterParticles.push(new OrbiterParticle(i)); } }
+                function animateAurora() { ctx.clearRect(0, 0, canvas.width, canvas.height); for (let i = auroraParticles.length - 1; i >= 0; i--) { const p = auroraParticles[i]; p.update(); p.draw(); if (p.life <= 0) { auroraParticles.splice(i, 1); } } orbiterParticles.forEach(p => { p.update(); p.draw(); }); hue = (hue + 0.5) % 360; requestAnimationFrame(animateAurora); }
+                initAurora();
+                animateAurora();
+                window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
+            }
 
-            // Gemini API Course Suggestion
+            // --- Original Page Logic ---
+            const countdown = () => {
+                const countDate = new Date(); countDate.setDate(countDate.getDate() + 2);
+                const timerElement = document.getElementById('timer'); if (!timerElement) return;
+                const interval = setInterval(() => {
+                    const now = new Date().getTime(); const distance = countDate - now;
+                    if (distance < 0) { clearInterval(interval); timerElement.innerHTML = "অফারটি শেষ হয়ে গেছে"; return; }
+                    const days = Math.floor(distance / 86400000); const hours = Math.floor((distance % 86400000) / 3600000); const minutes = Math.floor((distance % 3600000) / 60000); const seconds = Math.floor((distance % 60000) / 1000);
+                    timerElement.innerHTML = `অফার শেষ হচ্ছে: ${days} দিন ${hours} ঘন্টা ${minutes} মিনিট ${seconds} সেকেন্ড`;
+                }, 1000);
+            };
+            countdown();
+
+            const purchaseCounter = () => {
+                const counterElement = document.getElementById('purchase-counter'); if (!counterElement) return;
+                let purchaseCount = localStorage.getItem('purchaseCount');
+                if (purchaseCount === null) { purchaseCount = 157; } else { purchaseCount = parseInt(purchaseCount); }
+                const updateCounter = () => { counterElement.innerHTML = `🔥 <strong>${purchaseCount}</strong> জন ইতিমধ্যে কোর্সটি কিনেছেন!`; counterElement.classList.add('counter-pop'); setTimeout(() => counterElement.classList.remove('counter-pop'), 600); };
+                updateCounter();
+                const lastIncrementTime = localStorage.getItem('lastIncrementTime'); const currentTime = new Date().getTime(); const fourHours = 14400000;
+                if (!lastIncrementTime || (currentTime - lastIncrementTime > fourHours)) { purchaseCount++; localStorage.setItem('purchaseCount', purchaseCount); localStorage.setItem('lastIncrementTime', currentTime); updateCounter(); }
+                setInterval(() => { const newTime = new Date().getTime(); if (newTime - localStorage.getItem('lastIncrementTime') > fourHours) { let currentCount = parseInt(localStorage.getItem('purchaseCount')); currentCount++; localStorage.setItem('purchaseCount', currentCount); localStorage.setItem('lastIncrementTime', newTime); purchaseCount = currentCount; updateCounter(); } }, 60000);
+            };
+            purchaseCounter();
+
+            let isAudioReady = false;
+            const synth = new Tone.Synth({ oscillator: { type: 'sine' }, envelope: { attack: 0.005, decay: 0.1, sustain: 0.3, release: 1 } }).toDestination();
+            const gearSynth = new Tone.PolySynth({
+                voice: Tone.FMSynth,
+                options: {
+                    harmonicity: 5.1,
+                    modulationIndex: 3.1,
+                    detune: 0,
+                    oscillator: { type: "sine" },
+                    envelope: { attack: 0.001, decay: 0.1, sustain: 0.01, release: 0.1 },
+                    modulation: { type: "square" },
+                    modulationEnvelope: { attack: 0.002, decay: 0.2, sustain: 0, release: 0.2 }
+                }
+            }).toDestination();
+            const initializeAudio = async () => { if (!isAudioReady) { await Tone.start(); isAudioReady = true; console.log("Audio context started!"); } };
+            document.body.addEventListener('click', initializeAudio, { once: true });
+            document.body.addEventListener('touchstart', initializeAudio, { once: true });
+
+            const headerLetters = document.querySelectorAll('.header-title .letter');
+            headerLetters.forEach(letter => { letter.addEventListener('mouseenter', () => { if (!isAudioReady) return; gearSynth.triggerAttackRelease("C4", "32n"); }); });
+
+            const clickableElements = document.querySelectorAll('.course-link, #askGptBtn, #closeModalBtn');
+            clickableElements.forEach(link => { link.addEventListener('click', (e) => { if (isAudioReady) { synth.triggerAttackRelease("C4", "8n"); } if (link.tagName === 'A' && link.getAttribute('href')) { e.preventDefault(); document.body.classList.add('page-exit'); const destination = link.getAttribute('href'); setTimeout(() => { window.location.assign(destination); }, 500); } }); });
+            
+            const motivationalTextElement = document.getElementById('motivationalText');
+            const motivationalPhrases = ["আপনার স্কিল ডেভেলপমেন্টের সেরা ঠিকানা", "ছাত্র বয়স থেকে ইনকাম শুরু করা বুদ্ধিমানের কাজ।", "ভাবছেন আপনার স্কিল নেই? স্কিল শিখবেন এখানেই।", "বাবার কাছে হাত না পেতে, বাবাকে টাকা দিন।", "নিজের পায়ে দাঁড়ান, এখন AI এর স্বর্ণযুগ চলছে।", "এখন শুরু না করলে, ২-৪ বছর পর বিশাল প্রতিযোগিতায় পড়বেন।", "তখন মনে হবে, 'ইস! যদি ২ বছর আগে শুরু করতাম!'"];
+            let phraseIndex = 0;
+            const scrambleText = (element, newText) => { const chars = '!<>-_\\/[]{}—=+*^?#________'; let frame = 0; const frameRate = 20; const duration = 500; const totalFrames = duration / frameRate; const interval = setInterval(() => { let scrambled = ''; for (let i = 0; i < newText.length; i++) { const progress = frame / totalFrames; if (i < newText.length * progress) { scrambled += newText[i]; } else { scrambled += chars[Math.floor(Math.random() * chars.length)]; } } element.textContent = scrambled; frame++; if (frame >= totalFrames) { clearInterval(interval); element.textContent = newText; } }, frameRate); };
+            setInterval(() => { motivationalTextElement.classList.add('exiting'); motivationalTextElement.classList.remove('active'); setTimeout(() => { phraseIndex = (phraseIndex + 1) % motivationalPhrases.length; motivationalTextElement.classList.remove('exiting'); scrambleText(motivationalTextElement, motivationalPhrases[phraseIndex]); motivationalTextElement.classList.add('active'); }, 500); }, 5000);
+
             const askGptBtn = document.getElementById('askGptBtn');
             const modal = document.getElementById('suggestionModal');
             const closeModalBtn = document.getElementById('closeModalBtn');
@@ -313,88 +561,27 @@
             const resultState = document.getElementById('resultState');
             const reviewTitleEl = document.getElementById('reviewTitle');
             const reviewBodyEl = document.getElementById('reviewBody');
-
             askGptBtn.addEventListener('click', async () => {
-                await Tone.start();
-                synth.triggerAttackRelease("E4", "8n");
-                modal.classList.remove('hidden');
-                loadingState.classList.remove('hidden');
-                resultState.classList.add('hidden');
-
+                modal.classList.remove('hidden'); loadingState.classList.remove('hidden'); resultState.classList.add('hidden');
                 const courseTitle = "3D ANIMATION FACT SHORTS - JACK D FILMS STYLE";
-                const prompt = `You are a helpful and enthusiastic AI assistant for 'TECH SEEKER ACADEMY'. Your goal is to encourage potential students from Bangladesh to enroll in our courses. A user is asking for an opinion on the course: '${courseTitle}'.
-
-Generate a short, positive, and persuasive review of this course. Highlight the following benefits for a Bengali audience:
-- The potential to create a successful US-based YouTube channel and earn money online.
-- Learning to create viral, high-quality 3D animation shorts like 'Jack D Films' using only free AI tools, without needing an expensive PC or software.
-- The uniqueness of the course content and the step-by-step guidance provided.
-
-Your response MUST be in a JSON format with 'review_title' and 'review_body' keys. The response MUST be in Bengali (using Bangla script). The title should be catchy and the body should be persuasive.`;
-
-                const payload = {
-                    contents: [{
-                        parts: [{ text: prompt }]
-                    }],
-                    generationConfig: {
-                        responseMimeType: "application/json",
-                        responseSchema: {
-                            type: "OBJECT",
-                            properties: {
-                                "review_title": { "type": "STRING" },
-                                "review_body": { "type": "STRING" }
-                            },
-                            required: ["review_title", "review_body"]
-                        }
-                    }
-                };
-
-                const apiKey = "AIzaSyAz9NgC0LrClIzdouuaNQzbcsDl9h_yUo4"; // API key is now set
+                const prompt = `You are a helpful and enthusiastic AI assistant for 'TECH SEEKER ACADEMY'. Your goal is to encourage potential students from Bangladesh to enroll in our courses. A user is asking for an opinion on the course: '${courseTitle}'.\n\nGenerate a short, positive, and persuasive review of this course. Highlight the following benefits for a Bengali audience:\n- The potential to create a successful US-based YouTube channel and earn money online.\n- Learning to create viral, high-quality 3D animation shorts like 'Jack D Films' using only free AI tools, without needing an expensive PC or software.\n- The uniqueness of the course content and the step-by-step guidance provided.\n\nYour response MUST be in a JSON format with 'review_title' and 'review_body' keys. The response MUST be in Bengali (using Bangla script). The title should be catchy and the body should be persuasive.`;
+                const apiKey = "AIzaSyAz9NgC0LrClIzdouuaNQzbcsDl9h_yUo4";
                 const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
-
+                const payload = { contents: [{ parts: [{ text: prompt }] }], generationConfig: { responseMimeType: "application/json", responseSchema: { type: "OBJECT", properties: { "review_title": { "type": "STRING" }, "review_body": { "type": "STRING" } }, required: ["review_title", "review_body"] } } };
                 try {
-                    const response = await fetch(apiUrl, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(payload)
-                    });
-
-                    if (!response.ok) {
-                        throw new Error(`API request failed with status ${response.status}`);
-                    }
-
+                    const response = await fetch(apiUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+                    if (!response.ok) { throw new Error(`API request failed with status ${response.status}`); }
                     const result = await response.json();
-                    
-                    if (result.candidates && result.candidates.length > 0 && result.candidates[0].content.parts.length > 0) {
-                        const text = result.candidates[0].content.parts[0].text;
-                        const suggestion = JSON.parse(text);
-    
-                        reviewTitleEl.textContent = suggestion.review_title;
-                        reviewBodyEl.textContent = suggestion.review_body;
-                    } else {
-                         throw new Error("Invalid response structure from API");
-                    }
-
-
-                } catch (error) {
-                    console.error("Error fetching course suggestion:", error);
-                    reviewTitleEl.textContent = "ত্রুটি";
-                    reviewBodyEl.textContent = "দুঃখিত, এই মুহূর্তে কোনো মতামত তৈরি করা সম্ভব হচ্ছে না। অনুগ্রহ করে কিছুক্ষণ পর আবার চেষ্টা করুন।";
-                } finally {
-                    loadingState.classList.add('hidden');
-                    resultState.classList.remove('hidden');
-                }
+                    if (result.candidates && result.candidates.length > 0 && result.candidates[0].content.parts.length > 0) { const text = result.candidates[0].content.parts[0].text; const suggestion = JSON.parse(text); reviewTitleEl.textContent = suggestion.review_title; reviewBodyEl.textContent = suggestion.review_body; } else { throw new Error("Invalid response structure from API"); }
+                } catch (error) { console.error("Error fetching course suggestion:", error); reviewTitleEl.textContent = "ত্রুটি"; reviewBodyEl.textContent = "দুঃখিত, এই মুহূর্তে কোনো মতামত তৈরি করা সম্ভব হচ্ছে না। অনুগ্রহ করে কিছুক্ষণ পর আবার চেষ্টা করুন।"; } finally { loadingState.classList.add('hidden'); resultState.classList.remove('hidden'); }
             });
-
-            closeModalBtn.addEventListener('click', () => {
-                modal.classList.add('hidden');
-                Tone.start().then(() => {
-                    synth.triggerAttackRelease("A3", "8n");
-                });
-            });
+            closeModalBtn.addEventListener('click', () => { modal.classList.add('hidden'); });
         });
-
     </script>
 
 </body>
 </html>
+
+
+
 
