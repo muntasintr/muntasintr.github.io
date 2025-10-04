@@ -177,6 +177,25 @@
                 box-shadow: 0 0 20px #22d3ee, inset 0 0 10px #22d3ee;
             }
         }
+
+        /* New Glowing Green Button Style */
+        .glowing-green-btn {
+            background-color: #22c55e; /* green-500 */
+            box-shadow: 0 0 15px rgba(34, 197, 94, 0.6), 0 0 25px rgba(34, 197, 94, 0.4);
+            animation: glowing-pulse 2s infinite ease-in-out;
+        }
+
+        @keyframes glowing-pulse {
+            0% {
+                box-shadow: 0 0 15px rgba(34, 197, 94, 0.6), 0 0 25px rgba(34, 197, 94, 0.4);
+            }
+            50% {
+                box-shadow: 0 0 30px rgba(34, 197, 94, 1), 0 0 50px rgba(34, 197, 94, 0.7);
+            }
+            100% {
+                box-shadow: 0 0 15px rgba(34, 197, 94, 0.6), 0 0 25px rgba(34, 197, 94, 0.4);
+            }
+        }
         
         /* --- Styles for Background Effects --- */
         #three-bg, #combinedCanvas {
@@ -241,37 +260,53 @@
                         <div class="absolute inset-0 bg-black bg-opacity-90 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-500 rounded-t-xl flex items-center justify-center p-6">
                             <div class="text-left w-full h-full overflow-y-auto">
                                 <h4 class="text-2xl font-bold text-purple-400 mb-4 text-center font-bangla">সাধারণ জিজ্ঞাসা</h4>
+                                <!-- ***** UPDATED FAQ SECTION STARTS HERE ***** -->
                                 <details class="faq-item bg-gray-800 p-3 rounded-lg mb-2">
-                                    <summary class="font-semibold font-bangla">এই কোর্স করে কি আয় করা সম্ভব?</summary>
-                                    <p class="mt-2 text-gray-300 font-bangla text-sm">অবশ্যই! এই কোর্সের মূল উদ্দেশ্যই হলো আপনাকে US-ভিত্তিক একটি ইউটিউব চ্যানেল তৈরি করে প্রতি মাসে $1000+ (প্রায় ১ লক্ষ টাকা) আয় করার জন্য প্রস্তুত করা। 💰</p>
+                                    <summary class="font-semibold font-bangla">এই কোর্সটি কী নিয়ে?</summary>
+                                    <p class="mt-2 text-gray-300 font-bangla text-sm">এটি USA মার্কেটকে টার্গেট করে AI দিয়ে অটোমেশনের মাধ্যমে ভাইরাল শর্টস ভিডিও তৈরি করার একটি A to Z মেথড।</p>
+                                </details>
+                                <details class="faq-item bg-gray-800 p-3 rounded-lg mb-2">
+                                    <summary class="font-semibold font-bangla">এটা কি লাইভ কোর্স নাকি প্রি-রেকর্ডেড?</summary>
+                                    <p class="mt-2 text-gray-300 font-bangla text-sm">এটি একটি ৭ ঘন্টার প্রি-রেকর্ডেড কোর্স, যার লাইফটাইম অ্যাক্সেস পাবেন এবং আপনি আপনার সময় মতো নিজের পিসিতে বসে দেখতে পারবেন।</p>
+                                </details>
+                                <details class="faq-item bg-gray-800 p-3 rounded-lg mb-2">
+                                    <summary class="font-semibold font-bangla">এই কোর্সটি কাদের জন্য?</summary>
+                                    <p class="mt-2 text-gray-300 font-bangla text-sm">যারা দীর্ঘদিন ধরে ইউটিউব বা অনলাইনে সফল হতে চাইছেন কিন্তু সঠিক গাইডলাইন পাচ্ছেন না, তাদের জন্য। ছাত্র, চাকরিজীবী বা গৃহিণী, যারা একটি বাড়তি আয়ের পথ তৈরি করতে চান, যা আপনাকে চাকরির আগেই একজন সাধারণ চাকরিজীবীর চেয়ে বেশি আয়ের সুযোগ করে দেবে।</p>
                                 </details>
                                 <details class="faq-item bg-gray-800 p-3 rounded-lg mb-2">
                                     <summary class="font-semibold font-bangla">আমি কি মোবাইল দিয়ে এই কাজ করতে পারবো?</summary>
-                                    <p class="mt-2 text-gray-300 font-bangla text-sm">এই কোর্সটা এমনভাবে ডিজাইন করা হয়েছে যাতে একটি সফটওয়্যার আপনাকে প্রোভাইড করা যায় এবং সেই একই সফটওয়্যারের মধ্যেই আপনি কোর্সের ভিডিও, ডেটা ম্যানেজার এবং সম্পূর্ণ গাইডলাইন পেয়ে যাবেন। এই সফটওয়্যারটি পিসি ব্যবহারকারীদের জন্য তৈরি করা হয়েছে।</p>
+                                    <p class="mt-2 text-gray-300 font-bangla text-sm">বর্তমানে এই কোর্সের সম্পূর্ণ সুবিধা পেতে একটি পিসি বা ল্যাপটপ প্রয়োজন। তবে, আমরা শীঘ্রই মোবাইল ব্যবহারকারীদের জন্য একটি অ্যাপ নিয়ে আসছি। অ্যাপটি তৈরি হয়ে গেলেই আপডেট জানিয়ে দেওয়া হবে।</p>
                                 </details>
                                 <details class="faq-item bg-gray-800 p-3 rounded-lg">
                                     <summary class="font-semibold font-bangla">কোর্স শেষে সাপোর্ট কিভাবে পাবো?</summary>
-                                    <p class="mt-2 text-gray-300 font-bangla text-sm">কোর্স শেষে আমাদের একটি প্রিমিয়াম টেলিগ্রাম কমিউনিটিতে যোগ দেওয়ার সুযোগ রয়েছে। নির্দিষ্ট ফি-এর বিনিময়ে আপনি সেখানে লাইফটাইম অ্যাক্সেস পাবেন। এই গ্রুপে কোর্স সম্পর্কিত সকল আপডেট শেয়ার করা হয় এবং সদস্যরা নিজেদের মধ্যে আলোচনা করে অনেক সমস্যার সমাধান খুঁজে নিতে পারেন। আমিও সেখানে যথাসম্ভব সাহায্য করার চেষ্টা করি।</p>
+                                    <p class="mt-2 text-gray-300 font-bangla text-sm">কোর্স শেষে আমাদের প্রিমিয়াম টেলিগ্রাম কমিউনিটি এবং Tech Seeker Academy-এর ফেসবুক গ্রুপে যোগ দেওয়ার সুযোগ পাবেন। এই গ্রুপগুলোতে কোর্স সম্পর্কিত সকল আপডেট শেয়ার করা হয় এবং সদস্যরা নিজেদের মধ্যে আলোচনা করে সমস্যার সমাধান করতে পারেন। আমিও সেখানে যথাসম্ভব সাহায্য করার চেষ্টা করি।</p>
                                 </details>
+                                <!-- ***** UPDATED FAQ SECTION ENDS HERE ***** -->
                             </div>
                         </div>
                     </div>
-                    <a href="2payment.html" class="course-link block">
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold text-white mb-3">3D ANIMATION FACT SHORTS - JACK D FILMS STYLE</h3>
-                            <div class="flex items-baseline justify-between my-4">
-                                 <p class="text-3xl font-bold text-green-400">2000৳</p>
-                                 <p class="text-lg text-red-500 line-through ml-2">2500৳</p>
-                            </div>
-                             <!-- Live Purchase Counter -->
-                            <div id="purchase-counter" class="mt-4 text-center bg-gray-800 text-yellow-300 py-2 px-4 rounded-lg font-semibold font-bangla">
-                                <!-- Counter will be injected here -->
-                            </div>
-                            <div id="timer" class="mt-4 text-center bg-red-600 text-white py-2 px-4 rounded-lg font-semibold font-bangla">
-                                <!-- Countdown Timer will be injected here -->
-                            </div>
+                    
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-3">Viral 3D Shorts AI Automation Mastery- Dominate USA Market</h3>
+                        <div class="flex items-baseline justify-between my-4">
+                             <!-- UPDATED PRICE -->
+                             <p class="text-3xl font-bold text-green-400">3500৳</p>
+                             <!-- UPDATED DISCOUNT PRICE -->
+                             <p class="text-lg text-red-500 line-through ml-2">5000৳</p>
                         </div>
-                    </a>
+                         <!-- Live Purchase Counter -->
+                        <div id="purchase-counter" class="mt-4 text-center bg-gray-800 text-yellow-300 py-2 px-4 rounded-lg font-semibold font-bangla">
+                            <!-- Counter will be injected here -->
+                        </div>
+                        <!-- UPDATED TIMER - Single Line -->
+                        <div id="timer" class="mt-4 text-center bg-red-600 text-white py-2 px-4 rounded-lg font-semibold font-bangla text-sm whitespace-nowrap overflow-x-auto">
+                            <!-- Countdown Timer will be injected here -->
+                        </div>
+                        <!-- NEW GLOWING GREEN BUTTON -->
+                        <a href="2payment.html" class="course-link block w-full text-white font-bold text-center py-3 px-6 mt-4 rounded-lg hover:bg-green-600 transition-all duration-300 transform hover:scale-105 glowing-green-btn">
+                            ENROLL NOW
+                        </a>
+                    </div>
                 </div>
                 <button id="askGptBtn" class="mt-6 bg-purple-600 text-white font-bold py-3 px-6 rounded-full hover:bg-purple-700 transition-all duration-300 shadow-lg shadow-purple-500/40 transform hover:scale-105 font-bangla">
                     ✨ ChatGPT কে জিজ্ঞেস করুন এই কোর্সটি কেমন হবে?
@@ -299,7 +334,7 @@
             <div class="container mx-auto px-6">
                 <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 font-bangla">আপনার <span class="text-cyan-400">মেন্টরের</span> সাথে পরিচিত হন</h2>
                 <div class="flex flex-col md:flex-row items-center justify-center gap-12">
-                    <img src="14.png" alt="Mentor" class="w-56 h-56 md:w-64 md:h-64 rounded-full object-cover border-4 border-cyan-400 shadow-xl shadow-cyan-400/30">
+                    <img src="14.png" onerror="this.onerror=null;this.src='https://placehold.co/256x256/22d3ee/ffffff.png?text=Mentor';" alt="Mentor" class="w-56 h-56 md:w-64 md:h-64 rounded-full object-cover border-4 border-cyan-400 shadow-xl shadow-cyan-400/30">
                     <div class="md:w-1/2 text-center md:text-left">
                         <h3 class="text-3xl font-bold text-cyan-400">Tasin</h3>
                         <p class="mt-4 text-md text-gray-300">YouTuber | Creative Strategist | AI-Driven Content Creator | Prompt Engineer | Tech Reviewer & Educator | Automation Enthusiast</p>
@@ -515,7 +550,9 @@
             const purchaseCounter = () => {
                 const counterElement = document.getElementById('purchase-counter'); if (!counterElement) return;
                 let purchaseCount = localStorage.getItem('purchaseCount');
-                if (purchaseCount === null) { purchaseCount = 157; } else { purchaseCount = parseInt(purchaseCount); }
+                if (purchaseCount === null) { 
+                    purchaseCount = 26;
+                } else { purchaseCount = parseInt(purchaseCount); }
                 const updateCounter = () => { counterElement.innerHTML = `🔥 <strong>${purchaseCount}</strong> জন ইতিমধ্যে কোর্সটি কিনেছেন!`; counterElement.classList.add('counter-pop'); setTimeout(() => counterElement.classList.remove('counter-pop'), 600); };
                 updateCounter();
                 const lastIncrementTime = localStorage.getItem('lastIncrementTime'); const currentTime = new Date().getTime(); const fourHours = 14400000;
@@ -563,8 +600,8 @@
             const reviewBodyEl = document.getElementById('reviewBody');
             askGptBtn.addEventListener('click', async () => {
                 modal.classList.remove('hidden'); loadingState.classList.remove('hidden'); resultState.classList.add('hidden');
-                const courseTitle = "3D ANIMATION FACT SHORTS - JACK D FILMS STYLE";
-                const prompt = `You are a helpful and enthusiastic AI assistant for 'TECH SEEKER ACADEMY'. Your goal is to encourage potential students from Bangladesh to enroll in our courses. A user is asking for an opinion on the course: '${courseTitle}'.\n\nGenerate a short, positive, and persuasive review of this course. Highlight the following benefits for a Bengali audience:\n- The potential to create a successful US-based YouTube channel and earn money online.\n- Learning to create viral, high-quality 3D animation shorts like 'Jack D Films' using only free AI tools, without needing an expensive PC or software.\n- The uniqueness of the course content and the step-by-step guidance provided.\n\nYour response MUST be in a JSON format with 'review_title' and 'review_body' keys. The response MUST be in Bengali (using Bangla script). The title should be catchy and the body should be persuasive.`;
+                const courseTitle = "Viral 3D Shorts AI Automation Mastery- Dominate USA Market";
+                const prompt = `You are a helpful and enthusiastic AI assistant for 'TECH SEEKER ACADEMY'. Your goal is to encourage potential students from Bangladesh to enroll in our courses. A user is asking for an opinion on the course: '${courseTitle}'.\n\nGenerate a short, positive, and persuasive review of this course. Highlight the following benefits for a Bengali audience:\n- The potential to create a successful US-based YouTube channel and earn money online.\n- Learning to create viral, high-quality 3D animation shorts using only free AI tools, without needing an expensive PC or software.\n- The uniqueness of the course content and the step-by-step guidance provided.\n\nYour response MUST be in a JSON format with 'review_title' and 'review_body' keys. The response MUST be in Bengali (using Bangla script). The title should be catchy and the body should be persuasive.`;
                 const apiKey = "AIzaSyAz9NgC0LrClIzdouuaNQzbcsDl9h_yUo4";
                 const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
                 const payload = { contents: [{ parts: [{ text: prompt }] }], generationConfig: { responseMimeType: "application/json", responseSchema: { type: "OBJECT", properties: { "review_title": { "type": "STRING" }, "review_body": { "type": "STRING" } }, required: ["review_title", "review_body"] } } };
@@ -581,7 +618,4 @@
 
 </body>
 </html>
-
-
-
 
