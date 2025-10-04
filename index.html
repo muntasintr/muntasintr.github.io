@@ -3,8 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TECH SEEKER ACADEMY</title>
     
+    <!-- SEO Meta Tags -->
+    <title>Tech Seeker Academy | Viral 3D Shorts AI Automation Course</title>
+    <meta name="description" content="AI দিয়ে USA Market-এর জন্য Viral 3D অ্যানিমেশন শর্টস তৈরি করে মাসে $1000+ আয় করুন। Tech Seeker Academy-এর এই কোর্সের মাধ্যমে ইউটিউব অটোমেশনের সেরা স্ট্র্যাটেজি শিখুন।">
+    <meta name="keywords" content="AI Animation Course Bangladesh, YouTube Shorts Course Bangla, Make Money Online Bangladesh, AI Video Generation Course, Tech Seeker Academy, USA Market YouTube Strategy, 3D Animation Course in Bengali">
+    <meta name="author" content="Tech Seeker Academy">
+
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     
@@ -119,6 +124,16 @@
         .faq-item[open] summary {
             font-weight: 600;
             color: #a855f7; /* Purple color when open */
+        }
+
+        /* ***** UPDATED: Styles for Image and FAQ overlay animation ***** */
+        .image-fader .fader-item {
+            position: absolute;
+            inset: 0;
+            transition: opacity 0.7s ease-in-out; /* Faster transition */
+        }
+        .image-fader .faq-overlay {
+            opacity: 0;
         }
         
         /* Purchase counter animation */
@@ -253,14 +268,17 @@
             <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 font-bangla breathing-heading"><span class="text-cyan-400">প্রকাশিত</span> কোর্স</h2>
             <div class="flex flex-col items-center">
                 <div class="bg-gray-900 border border-purple-900 rounded-xl overflow-hidden card-glow published-card-glow max-w-sm">
-                    <div class="relative group">
+                    
+                    <div class="relative w-full h-56 image-fader">
                         <!-- Course Image -->
-                        <img src="3d-animation-course.png" onerror="this.onerror=null;this.src='https://placehold.co/800x450/a855f7/ffffff.png?text=Course+Image';" alt="3D Animation Course" class="w-full h-56 object-cover">
+                        <div class="fader-item course-image">
+                            <img src="3d-animation-course.png" onerror="this.onerror=null;this.src='https://placehold.co/800x450/a855f7/ffffff.png?text=Course+Image';" alt="3D Animation Course" class="w-full h-full object-cover">
+                        </div>
+                        
                         <!-- FAQ Overlay -->
-                        <div class="absolute inset-0 bg-black bg-opacity-90 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-500 rounded-t-xl flex items-center justify-center p-6">
+                        <div class="fader-item faq-overlay bg-black bg-opacity-90 flex items-center justify-center p-6">
                             <div class="text-left w-full h-full overflow-y-auto">
                                 <h4 class="text-2xl font-bold text-purple-400 mb-4 text-center font-bangla">সাধারণ জিজ্ঞাসা</h4>
-                                <!-- ***** UPDATED FAQ SECTION STARTS HERE ***** -->
                                 <details class="faq-item bg-gray-800 p-3 rounded-lg mb-2">
                                     <summary class="font-semibold font-bangla">এই কোর্সটি কী নিয়ে?</summary>
                                     <p class="mt-2 text-gray-300 font-bangla text-sm">এটি USA মার্কেটকে টার্গেট করে AI দিয়ে অটোমেশনের মাধ্যমে ভাইরাল শর্টস ভিডিও তৈরি করার একটি A to Z মেথড।</p>
@@ -281,7 +299,6 @@
                                     <summary class="font-semibold font-bangla">কোর্স শেষে সাপোর্ট কিভাবে পাবো?</summary>
                                     <p class="mt-2 text-gray-300 font-bangla text-sm">কোর্স শেষে আমাদের প্রিমিয়াম টেলিগ্রাম কমিউনিটি এবং Tech Seeker Academy-এর ফেসবুক গ্রুপে যোগ দেওয়ার সুযোগ পাবেন। এই গ্রুপগুলোতে কোর্স সম্পর্কিত সকল আপডেট শেয়ার করা হয় এবং সদস্যরা নিজেদের মধ্যে আলোচনা করে সমস্যার সমাধান করতে পারেন। আমিও সেখানে যথাসম্ভব সাহায্য করার চেষ্টা করি।</p>
                                 </details>
-                                <!-- ***** UPDATED FAQ SECTION ENDS HERE ***** -->
                             </div>
                         </div>
                     </div>
@@ -498,7 +515,7 @@
         });
     </script>
     
-            <!-- Combined Original Page & Aurora Orbiter Script -->
+    <!-- Combined Original Page & Aurora Orbiter Script -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // --- Aurora Orbiter Effect ---
@@ -591,6 +608,49 @@
             const scrambleText = (element, newText) => { const chars = '!<>-_\\/[]{}—=+*^?#________'; let frame = 0; const frameRate = 20; const duration = 500; const totalFrames = duration / frameRate; const interval = setInterval(() => { let scrambled = ''; for (let i = 0; i < newText.length; i++) { const progress = frame / totalFrames; if (i < newText.length * progress) { scrambled += newText[i]; } else { scrambled += chars[Math.floor(Math.random() * chars.length)]; } } element.textContent = scrambled; frame++; if (frame >= totalFrames) { clearInterval(interval); element.textContent = newText; } }, frameRate); };
             setInterval(() => { motivationalTextElement.classList.add('exiting'); motivationalTextElement.classList.remove('active'); setTimeout(() => { phraseIndex = (phraseIndex + 1) % motivationalPhrases.length; motivationalTextElement.classList.remove('exiting'); scrambleText(motivationalTextElement, motivationalPhrases[phraseIndex]); motivationalTextElement.classList.add('active'); }, 500); }, 5000);
 
+            // ***** UPDATED: Script for Interactive Image/FAQ fader *****
+            const imageFader = () => {
+                const card = document.querySelector('.published-card-glow');
+                if (!card) return;
+                
+                const fader = card.querySelector('.image-fader');
+                const courseImage = fader.querySelector('.course-image');
+                const faqOverlay = fader.querySelector('.faq-overlay');
+
+                let isFaqVisible = false;
+                let fadeInterval;
+
+                const startFading = () => {
+                    // Clear any existing interval to prevent duplicates
+                    clearInterval(fadeInterval);
+                    fadeInterval = setInterval(() => {
+                        if (isFaqVisible) {
+                            faqOverlay.style.opacity = '0';
+                            courseImage.style.opacity = '1';
+                        } else {
+                            faqOverlay.style.opacity = '1';
+                            courseImage.style.opacity = '0';
+                        }
+                        isFaqVisible = !isFaqVisible;
+                    }, 4000); // Toggles every 4 seconds (faster)
+                };
+
+                const stopFadingAndShowFaq = () => {
+                    clearInterval(fadeInterval);
+                    faqOverlay.style.opacity = '1';
+                    courseImage.style.opacity = '0';
+                    isFaqVisible = true;
+                };
+
+                // Start the animation automatically
+                startFading();
+
+                // Add hover listeners to the parent card
+                card.addEventListener('mouseenter', stopFadingAndShowFaq);
+                card.addEventListener('mouseleave', startFading);
+            };
+            imageFader();
+            
             const askGptBtn = document.getElementById('askGptBtn');
             const modal = document.getElementById('suggestionModal');
             const closeModalBtn = document.getElementById('closeModalBtn');
