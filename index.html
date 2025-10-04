@@ -326,7 +326,7 @@
                     </div>
                 </div>
                 <button id="askGptBtn" class="mt-6 bg-purple-600 text-white font-bold py-3 px-6 rounded-full hover:bg-purple-700 transition-all duration-300 shadow-lg shadow-purple-500/40 transform hover:scale-105 font-bangla">
-                    ✨ ChatGPT কে জিজ্ঞেস করুন এই কোর্সটি কেমন হবে?
+                    ✨ AI এক্সপার্টকে জিজ্ঞেস করুন
                 </button>
             </div>
         </section>
@@ -661,7 +661,17 @@
             askGptBtn.addEventListener('click', async () => {
                 modal.classList.remove('hidden'); loadingState.classList.remove('hidden'); resultState.classList.add('hidden');
                 const courseTitle = "Viral 3D Shorts AI Automation Mastery- Dominate USA Market";
-                const prompt = `You are a helpful and enthusiastic AI assistant for 'TECH SEEKER ACADEMY'. Your goal is to encourage potential students from Bangladesh to enroll in our courses. A user is asking for an opinion on the course: '${courseTitle}'.\n\nGenerate a short, positive, and persuasive review of this course. Highlight the following benefits for a Bengali audience:\n- The potential to create a successful US-based YouTube channel and earn money online.\n- Learning to create viral, high-quality 3D animation shorts using only free AI tools, without needing an expensive PC or software.\n- The uniqueness of the course content and the step-by-step guidance provided.\n\nYour response MUST be in a JSON format with 'review_title' and 'review_body' keys. The response MUST be in Bengali (using Bangla script). The title should be catchy and the body should be persuasive.`;
+                
+                // ***** UPDATED PROMPT FOR MORE BELIEVABLE RESPONSE *****
+                const prompt = `You are an AI expert and course reviewer for 'TECH SEEKER ACADEMY'. Your goal is to provide a helpful and professional analysis for potential students from Bangladesh. A user is asking for an expert opinion on the course: '${courseTitle}'.
+
+                Generate a short, positive, and persuasive review from an expert's perspective. Do NOT pretend to be a student who has taken the course. Instead, act as a reviewer analyzing the course's value. Highlight the following benefits for a Bengali audience:
+                - The strategic value of targeting the US YouTube market.
+                - The innovation of using free AI tools for high-quality 3D animation, removing financial barriers like expensive PCs or software.
+                - The course's structure as a complete, step-by-step guide (A to Z method).
+                
+                Your response MUST be in a JSON format with 'review_title' and 'review_body' keys. The response MUST be in Bengali (using Bangla script). The title should be catchy and professional, and the body should be analytical and encouraging.`;
+
                 const apiKey = "AIzaSyAz9NgC0LrClIzdouuaNQzbcsDl9h_yUo4";
                 const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
                 const payload = { contents: [{ parts: [{ text: prompt }] }], generationConfig: { responseMimeType: "application/json", responseSchema: { type: "OBJECT", properties: { "review_title": { "type": "STRING" }, "review_body": { "type": "STRING" } }, required: ["review_title", "review_body"] } } };
