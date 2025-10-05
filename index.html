@@ -9,6 +9,9 @@
     <meta name="description" content="AI দিয়ে USA Market-এর জন্য Viral 3D অ্যানিমেশন শর্টস তৈরি করে মাসে $1000+ আয় করুন। Tech Seeker Academy-এর এই কোর্সের মাধ্যমে ইউটিউব অটোমেশনের সেরা স্ট্র্যাটেজি শিখুন।">
     <meta name="keywords" content="AI Animation Course Bangladesh, YouTube Shorts Course Bangla, Make Money Online Bangladesh, AI Video Generation Course, Tech Seeker Academy, USA Market YouTube Strategy, 3D Animation Course in Bengali">
     <meta name="author" content="Tech Seeker Academy">
+    
+    <!-- NEW: Favicon Link -->
+    <link rel="icon" type="image/png" href="favicon.png">
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -237,6 +240,85 @@
         .bg-gray-800 {
             background-color: rgba(31, 41, 55, 0.85) !important;
         }
+
+        /* --- UPDATED: Styles for Floating Promo Video --- */
+        .floating-video-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 320px;
+            z-index: 1000;
+            transform: translateX(120%);
+            transition: transform 0.5s ease-in-out;
+            background-color: #000;
+            border: 2px solid #a855f7;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(168, 85, 247, 0.5);
+        }
+
+        .floating-video-container.is-visible {
+            transform: translateX(0);
+        }
+        
+        .floating-video-header {
+            padding: 4px 8px;
+            background-color: #a855f7;
+            color: white;
+            font-size: 0.8rem;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .video-wrapper-promo {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden; /* Ensures button stays inside rounded corners */
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
+        }
+        
+        .video-wrapper-promo iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* NEW: Mute Button Style */
+        #mute-promo-video {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white;
+            border: 1px solid white;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1001;
+            transition: background-color 0.3s;
+        }
+        #mute-promo-video:hover {
+            background-color: rgba(168, 85, 247, 0.8);
+        }
+        #mute-promo-video svg {
+            width: 20px;
+            height: 20px;
+        }
+
+
+        @media (max-width: 768px) {
+            .floating-video-container {
+                display: none; /* Hide on mobile devices */
+            }
+        }
+
     </style>
 </head>
 <body class="text-white">
@@ -351,7 +433,7 @@
             <div class="container mx-auto px-6">
                 <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 font-bangla">আপনার <span class="text-cyan-400">মেন্টরের</span> সাথে পরিচিত হন</h2>
                 <div class="flex flex-col md:flex-row items-center justify-center gap-12">
-                    <img src="14.png" onerror="this.onerror=null;this.src='https://placehold.co/256x256/22d3ee/ffffff.png?text=Mentor';" alt="Mentor" class="w-56 h-56 md:w-64 md:h-64 rounded-full object-cover border-4 border-cyan-400 shadow-xl shadow-cyan-400/30">
+                    <img src="14.png" onerror="this.onerror=null;this.src='https://placehold.co/256x256/22d3ee/ffffff.png?text=Mentor';" alt="Mentor" class="w-56 h-56 md:w-64 md-h-64 rounded-full object-cover border-4 border-cyan-400 shadow-xl shadow-cyan-400/30">
                     <div class="md:w-1/2 text-center md:text-left">
                         <h3 class="text-3xl font-bold text-cyan-400">Tasin</h3>
                         <p class="mt-4 text-md text-gray-300">YouTuber | Creative Strategist | AI-Driven Content Creator | Prompt Engineer | Tech Reviewer & Educator | Automation Enthusiast</p>
@@ -389,6 +471,17 @@
             <p>&copy; 2025 TECH SEEKER ACADEMY. All Rights Reserved.</p>
         </div>
     </footer>
+    
+    <!-- UPDATED: Floating Promo Video -->
+    <div id="floating-video" class="floating-video-container">
+        <div class="floating-video-header font-bangla">কোর্স প্রোমো</div>
+        <div class="video-wrapper-promo">
+            <div id="promo-player"></div>
+            <button id="mute-promo-video">
+                <!-- SVG Icon will be injected here by JS -->
+            </button>
+        </div>
+    </div>
 
     <!-- Suggestion Modal -->
     <div id="suggestionModal" class="hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
@@ -408,6 +501,9 @@
             </div>
         </div>
     </div>
+    
+    <!-- YouTube IFrame API Script -->
+    <script src="https://www.youtube.com/iframe_api"></script>
 
     <!-- 3D Space Background Script -->
     <script>
@@ -683,6 +779,79 @@
                 } catch (error) { console.error("Error fetching course suggestion:", error); reviewTitleEl.textContent = "ত্রুটি"; reviewBodyEl.textContent = "দুঃখিত, এই মুহূর্তে কোনো মতামত তৈরি করা সম্ভব হচ্ছে না। অনুগ্রহ করে কিছুক্ষণ পর আবার চেষ্টা করুন।"; } finally { loadingState.classList.add('hidden'); resultState.classList.remove('hidden'); }
             });
             closeModalBtn.addEventListener('click', () => { modal.classList.add('hidden'); });
+            
+            // --- UPDATED: Floating Promo Video Logic ---
+            let promoPlayer;
+            const floatingVideo = document.getElementById('floating-video');
+            const mutePromoBtn = document.getElementById('mute-promo-video');
+            const targetSection = document.getElementById('published-courses');
+            
+            const mutedIcon = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 9.75 19.5 12m0 0 2.25 2.25M19.5 12l-2.25 2.25M19.5 12l2.25-2.25M12.75 15v-6.75l-2.25-2.25L9 7.5l-2.25 2.25-2.25 2.25L6 15m6.75 0v-6.75m0 6.75L12 18.75m0-9.375L12 3.375" /></svg>`;
+            const unmutedIcon = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.114 5.636a9 9 0 0 1 0 12.728M16.463 8.288a5.25 5.25 0 0 1 0 7.424M6.75 8.25l4.72-4.72a.75.75 0 0 1 1.28.53v15.88a.75.75 0 0 1-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.01 9.01 0 0 1 2.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75Z" /></svg>`;
+
+            window.onYouTubeIframeAPIReady = function() {
+                promoPlayer = new YT.Player('promo-player', {
+                    height: '180',
+                    width: '320',
+                    videoId: '0HGgh99JMac', // <-- Your Promo Video ID
+                    playerVars: {
+                        'playsinline': 1,
+                        'autoplay': 1,
+                        'controls': 0,
+                        'loop': 1,
+                        'mute': 1,
+                        'playlist': '0HGgh99JMac' // for looping
+                    },
+                    events: {
+                        'onReady': onPlayerReady
+                    }
+                });
+            }
+
+            function onPlayerReady(event) {
+                updateMuteButton();
+                setupIntersectionObserver();
+            }
+            
+            function updateMuteButton() {
+                if (!promoPlayer || typeof promoPlayer.isMuted !== 'function') return;
+                
+                if (promoPlayer.isMuted()) {
+                    mutePromoBtn.innerHTML = mutedIcon;
+                } else {
+                    mutePromoBtn.innerHTML = unmutedIcon;
+                }
+            }
+
+            function setupIntersectionObserver() {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            floatingVideo.classList.add('is-visible');
+                            promoPlayer.playVideo();
+                        } else {
+                            floatingVideo.classList.remove('is-visible');
+                            promoPlayer.pauseVideo();
+                        }
+                    });
+                }, { threshold: 0.5 }); 
+
+                if (targetSection) {
+                    observer.observe(targetSection);
+                }
+            }
+
+            if (mutePromoBtn) {
+                mutePromoBtn.addEventListener('click', () => {
+                    if (promoPlayer.isMuted()) {
+                        promoPlayer.unMute();
+                    } else {
+                        promoPlayer.mute();
+                    }
+                    setTimeout(updateMuteButton, 100); // Give player time to update state
+                });
+            }
+
         });
     </script>
 
