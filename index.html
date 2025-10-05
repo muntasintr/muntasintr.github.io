@@ -241,23 +241,15 @@
             background-color: rgba(31, 41, 55, 0.85) !important;
         }
 
-        /* --- UPDATED: Styles for Floating Promo Video --- */
-        .floating-video-container {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 320px;
-            z-index: 1000;
-            transform: translateX(120%);
-            transition: transform 0.5s ease-in-out;
-            background-color: #000;
+        /* --- UPDATED: Styles for Promo Video (Mobile First) --- */
+        .promo-video-container {
+            width: 100%;
+            max-width: 24rem; /* max-w-sm */
+            margin-top: 1.5rem; /* mt-6 */
             border: 2px solid #a855f7;
             border-radius: 10px;
             box-shadow: 0 0 20px rgba(168, 85, 247, 0.5);
-        }
-
-        .floating-video-container.is-visible {
-            transform: translateX(0);
+            background-color: #000;
         }
         
         .floating-video-header {
@@ -286,7 +278,6 @@
             height: 100%;
         }
 
-        /* NEW: Mute Button Style */
         #mute-promo-video {
             position: absolute;
             bottom: 10px;
@@ -312,10 +303,23 @@
             height: 20px;
         }
 
+        /* Desktop Styles for Promo Video */
+        @media (min-width: 768px) {
+            .promo-video-container {
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                width: 320px;
+                max-width: none;
+                margin-top: 0;
+                z-index: 1000;
+                transform: translateX(120%);
+                transition: transform 0.5s ease-in-out;
+                display: block !important; /* Ensure it's visible */
+            }
 
-        @media (max-width: 768px) {
-            .floating-video-container {
-                display: none; /* Hide on mobile devices */
+            .promo-video-container.is-visible {
+                transform: translateX(0);
             }
         }
 
@@ -407,6 +411,18 @@
                         </a>
                     </div>
                 </div>
+
+                <!-- MOVED: Promo Video is now here -->
+                <div id="promo-video" class="promo-video-container">
+                    <div class="floating-video-header font-bangla">কোর্স প্রোমো</div>
+                    <div class="video-wrapper-promo">
+                        <div id="promo-player"></div>
+                        <button id="mute-promo-video">
+                            <!-- SVG Icon will be injected here by JS -->
+                        </button>
+                    </div>
+                </div>
+
                 <button id="askGptBtn" class="mt-6 bg-purple-600 text-white font-bold py-3 px-6 rounded-full hover:bg-purple-700 transition-all duration-300 shadow-lg shadow-purple-500/40 transform hover:scale-105 font-bangla">
                     ✨ AI এক্সপার্টকে জিজ্ঞেস করুন
                 </button>
@@ -433,7 +449,7 @@
             <div class="container mx-auto px-6">
                 <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 font-bangla">আপনার <span class="text-cyan-400">মেন্টরের</span> সাথে পরিচিত হন</h2>
                 <div class="flex flex-col md:flex-row items-center justify-center gap-12">
-                    <img src="14.png" onerror="this.onerror=null;this.src='https://placehold.co/256x256/22d3ee/ffffff.png?text=Mentor';" alt="Mentor" class="w-56 h-56 md:w-64 md-h-64 rounded-full object-cover border-4 border-cyan-400 shadow-xl shadow-cyan-400/30">
+                    <img src="14.png" onerror="this.onerror=null;this.src='https://placehold.co/256x256/22d3ee/ffffff.png?text=Mentor';" alt="Mentor" class="w-56 h-56 md:w-64 md:h-64 rounded-full object-cover border-4 border-cyan-400 shadow-xl shadow-cyan-400/30">
                     <div class="md:w-1/2 text-center md:text-left">
                         <h3 class="text-3xl font-bold text-cyan-400">Tasin</h3>
                         <p class="mt-4 text-md text-gray-300">YouTuber | Creative Strategist | AI-Driven Content Creator | Prompt Engineer | Tech Reviewer & Educator | Automation Enthusiast</p>
@@ -472,17 +488,6 @@
         </div>
     </footer>
     
-    <!-- UPDATED: Floating Promo Video -->
-    <div id="floating-video" class="floating-video-container">
-        <div class="floating-video-header font-bangla">কোর্স প্রোমো</div>
-        <div class="video-wrapper-promo">
-            <div id="promo-player"></div>
-            <button id="mute-promo-video">
-                <!-- SVG Icon will be injected here by JS -->
-            </button>
-        </div>
-    </div>
-
     <!-- Suggestion Modal -->
     <div id="suggestionModal" class="hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
         <div class="bg-gray-800 rounded-xl p-8 max-w-2xl w-full mx-4 shadow-2xl shadow-purple-500/30">
@@ -728,7 +733,7 @@
                             courseImage.style.opacity = '0';
                         }
                         isFaqVisible = !isFaqVisible;
-                    }, 4000); // Toggles every 4 seconds (faster)
+                    }, 2000); // Toggles every 2 seconds
                 };
 
                 const stopFadingAndShowFaq = () => {
@@ -782,7 +787,7 @@
             
             // --- UPDATED: Floating Promo Video Logic ---
             let promoPlayer;
-            const floatingVideo = document.getElementById('floating-video');
+            const promoVideoContainer = document.getElementById('promo-video');
             const mutePromoBtn = document.getElementById('mute-promo-video');
             const targetSection = document.getElementById('published-courses');
             
@@ -796,7 +801,7 @@
                     videoId: '0HGgh99JMac', // <-- Your Promo Video ID
                     playerVars: {
                         'playsinline': 1,
-                        'autoplay': 1,
+                        'autoplay': 1, 
                         'controls': 0,
                         'loop': 1,
                         'mute': 1,
@@ -810,7 +815,9 @@
 
             function onPlayerReady(event) {
                 updateMuteButton();
-                setupIntersectionObserver();
+                if (window.innerWidth >= 768) {
+                    setupIntersectionObserver();
+                }
             }
             
             function updateMuteButton() {
@@ -827,11 +834,15 @@
                 const observer = new IntersectionObserver((entries) => {
                     entries.forEach(entry => {
                         if (entry.isIntersecting) {
-                            floatingVideo.classList.add('is-visible');
-                            promoPlayer.playVideo();
+                            promoVideoContainer.classList.add('is-visible');
+                            if (promoPlayer && typeof promoPlayer.playVideo === 'function') {
+                                promoPlayer.playVideo();
+                            }
                         } else {
-                            floatingVideo.classList.remove('is-visible');
-                            promoPlayer.pauseVideo();
+                            promoVideoContainer.classList.remove('is-visible');
+                             if (promoPlayer && typeof promoPlayer.pauseVideo === 'function') {
+                                promoPlayer.pauseVideo();
+                            }
                         }
                     });
                 }, { threshold: 0.5 }); 
@@ -843,12 +854,13 @@
 
             if (mutePromoBtn) {
                 mutePromoBtn.addEventListener('click', () => {
+                    if (!promoPlayer || typeof promoPlayer.isMuted !== 'function') return;
                     if (promoPlayer.isMuted()) {
                         promoPlayer.unMute();
                     } else {
                         promoPlayer.mute();
                     }
-                    setTimeout(updateMuteButton, 100); // Give player time to update state
+                    setTimeout(updateMuteButton, 100);
                 });
             }
 
