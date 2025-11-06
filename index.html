@@ -113,6 +113,15 @@
             box-shadow: 0 0 30px rgba(168, 85, 247, 0.6), 0 0 50px rgba(168, 85, 247, 0.4);
         }
         
+        /* --- ADDED: Tool card glow --- */
+        .tool-card-glow {
+            box-shadow: 0 0 15px rgba(34, 197, 94, 0.3); /* Green glow */
+        }
+        .tool-card-glow:hover {
+            box-shadow: 0 0 30px rgba(34, 197, 94, 0.6), 0 0 50px rgba(34, 197, 94, 0.4);
+        }
+        /* --- END ADDED --- */
+        
         /* FAQ accordion styles */
         .faq-item summary {
             cursor: pointer;
@@ -317,6 +326,15 @@
             }
         }
 
+        /* --- ADDED: Tool card glow --- */
+        .tool-card-glow {
+            box-shadow: 0 0 15px rgba(34, 197, 94, 0.3); /* Green glow */
+        }
+        .tool-card-glow:hover {
+            box-shadow: 0 0 30px rgba(34, 197, 94, 0.6), 0 0 50px rgba(34, 197, 94, 0.4);
+        }
+        /* --- END ADDED --- */
+
     </style>
 
     <script>
@@ -425,6 +443,79 @@
                 </button>
             </div>
         </section>
+
+        <!-- --- ADDED: AI Tools Section --- -->
+        <section id="ai-tools" class="mb-20">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 font-bangla breathing-heading"><span class="text-green-400">AI</span> টুলস</h2>
+            <!-- Grid layout for tool cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Tool Card 1: Ultimate AI Automationer -->
+                <div class="bg-gray-900 border border-green-900 rounded-xl overflow-hidden card-glow tool-card-glow">
+                    
+                    <!-- Promo Video: Using the ID you provided -->
+                    <div class="relative w-full aspect-w-16 aspect-h-9">
+                        <iframe src="https://www.youtube.com/embed/Ei4vQgEeKbo" title="Tool Promo Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="absolute top-0 left-0 w-full h-full object-cover"></iframe>
+                    </div>
+
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-3">Ultimate AI Automationer</h3>
+                        <p class="text-gray-300 font-bangla text-sm mb-4 h-16">এটি একটি অল-ইন-ওয়ান অটোমেশন টুল, যা আপনার কনটেন্ট তৈরির ৮০% কাজ কমিয়ে দেবে!</p>
+                        <div class="flex items-baseline justify-between my-4">
+                             <!-- Price and duration -->
+                             <p class="text-3xl font-bold text-green-400">৳৪৯৯ <span class="text-lg font-normal text-gray-400">/ মাস</span></p>
+                        </div>
+                        
+                        <!-- Link to the payment page you provided -->
+                        <a href="uaa-payment.html" class="course-link block w-full text-white font-bold text-center py-3 px-6 mt-4 rounded-lg hover:bg-green-600 transition-all duration-300 transform hover:scale-105 glowing-green-btn">
+                            বিস্তারিত দেখুন ও সাবস্ক্রাইব করুন
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Tool Card 2: AI Thumbnail Generator (Placeholder) -->
+                <div class="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden card-glow tool-card-glow opacity-60">
+                    <!-- Placeholder image -->
+                    <div class="relative w-full aspect-w-16 aspect-h-9 bg-gray-800 flex items-center justify-center">
+                        <img src="https://api.dicebear.com/8.x/shapes/svg?seed=Thumbnail&scale=85&radius=10&backgroundType=gradientLinear&backgroundColor=22c55e,0c111d" alt="AI Thumbnail Generator" class="w-full h-48 object-cover">
+                        <span class="absolute text-white font-bold text-lg font-bangla">শীঘ্রই আসছে...</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-3">AI Thumbnail Generator</h3>
+                        <p class="text-gray-300 font-bangla text-sm mb-4 h-16">এক ক্লিকে আপনার ভিডিওর জন্য আকর্ষণীয় থাম্বনেইল তৈরি করুন।</p>
+                        <div class="flex items-baseline justify-between my-4">
+                             <p class="text-3xl font-bold text-green-400">৳TBA <span class="text-lg font-normal text-gray-400">/ মাস</span></p>
+                        </div>
+                        <!-- Disabled button -->
+                        <a href="#" class="cursor-not-allowed block w-full bg-gray-700 text-gray-400 font-bold text-center py-3 px-6 mt-4 rounded-lg">
+                            শীঘ্রই আসছে
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Tool Card 3: AI SEO Helper (Placeholder) -->
+                <div class="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden card-glow tool-card-glow opacity-60">
+                    <!-- Placeholder image -->
+                    <div class="relative w-full aspect-w-16 aspect-h-9 bg-gray-800 flex items-center justify-center">
+                        <img src="https://api.dicebear.com/8.x/shapes/svg?seed=SEO&scale=85&radius=10&backgroundType=gradientLinear&backgroundColor=22c55e,0c111d" alt="AI SEO Helper" class="w-full h-48 object-cover">
+                        <span class="absolute text-white font-bold text-lg font-bangla">শীঘ্রই আসছে...</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-3">AI SEO Helper</h3>
+                        <p class="text-gray-300 font-bangla text-sm mb-4 h-16">আপনার ভিডিওর জন্য সেরা টাইটেল, ডেসক্রিপশন এবং ট্যাগ খুঁজে বের করুন।</p>
+                        <div class="flex items-baseline justify-between my-4">
+                             <p class="text-3xl font-bold text-green-400">৳TBA <span class="text-lg font-normal text-gray-400">/ মাস</span></p>
+                        </div>
+                        <!-- Disabled button -->
+                        <a href="#" class="cursor-not-allowed block w-full bg-gray-700 text-gray-400 font-bold text-center py-3 px-6 mt-4 rounded-lg">
+                            শীঘ্রই আসছে
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <!-- --- END ADDED --- -->
 
         <section id="upcoming-courses" class="mb-20">
             <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 font-bangla breathing-heading"><span class="text-cyan-400">শীঘ্রই</span> আসছে</h2>
@@ -657,7 +748,7 @@
                 const counterElement = document.getElementById('purchase-counter'); if (!counterElement) return;
                 let purchaseCount = localStorage.getItem('purchaseCount');
                 if (purchaseCount === null) { 
-                    purchaseCount = 26;
+                    purchaseCount = 59;
                 } else { purchaseCount = parseInt(purchaseCount); }
                 const updateCounter = () => { counterElement.innerHTML = `🔥 <strong>${purchaseCount}</strong> জন ইতিমধ্যে কোর্সটি কিনেছেন!`; counterElement.classList.add('counter-pop'); setTimeout(() => counterElement.classList.remove('counter-pop'), 600); };
                 updateCounter();
@@ -689,7 +780,7 @@
             headerLetters.forEach(letter => { letter.addEventListener('mouseenter', () => { if (!isAudioReady) return; gearSynth.triggerAttackRelease("C4", "32n"); }); });
 
             const clickableElements = document.querySelectorAll('.course-link, #askGptBtn, #closeModalBtn');
-            clickableElements.forEach(link => { link.addEventListener('click', (e) => { if (isAudioReady) { synth.triggerAttackRelease("C4", "8n"); } if (link.tagName === 'A' && link.getAttribute('href')) { e.preventDefault(); document.body.classList.add('page-exit'); const destination = link.getAttribute('href'); setTimeout(() => { window.location.assign(destination); }, 500); } }); });
+            clickableElements.forEach(link => { link.addEventListener('click', (e) => { if (isAudioReady) { synth.triggerAttackRelease("C4", "8n"); } if (link.tagName === 'A' && link.getAttribute('href') && link.getAttribute('href') !== '#') { e.preventDefault(); document.body.classList.add('page-exit'); const destination = link.getAttribute('href'); setTimeout(() => { window.location.assign(destination); }, 500); } }); });
             
             const motivationalTextElement = document.getElementById('motivationalText');
             const motivationalPhrases = ["আপনার স্কিল ডেভেলপমেন্টের সেরা ঠিকানা", "ছাত্র বয়স থেকে ইনকাম শুরু করা বুদ্ধিমানের কাজ।", "ভাবছেন আপনার স্কিল নেই? স্কিল শিখবেন এখানেই।", "বাবার কাছে হাত না পেতে, বাবাকে টাকা দিন।", "নিজের পায়ে দাঁড়ান, এখন AI এর স্বর্ণযুগ চলছে।", "এখন শুরু না করলে, ২-৪ বছর পর বিশাল প্রতিযোগিতায় পড়বেন।", "তখন মনে হবে, 'ইস! যদি ২ বছর আগে শুরু করতাম!'"];
