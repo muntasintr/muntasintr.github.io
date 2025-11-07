@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags for Course Access Page -->
+    <title>Course Access - Tech Seeker Academy</title>
+    <meta name="description" content="Welcome to your course access page at Tech Seeker Academy. Download your course materials and start learning.">
+    <meta name="robots" content="noindex, nofollow"> <!-- Prevents this page from appearing in Google search results -->
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.png">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Teko:wght@700&family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Poppins', 'Hind Siliguri', sans-serif; background-color: #0c111d; overflow-x: hidden; }
+        .font-bangla { font-family: 'Hind Siliguri', sans-serif; }
+        .font-teko { font-family: 'Teko', sans-serif; }
+        
+        /* Consistent Header Style */
+        .header-container {
+            padding-top: 2rem;
+            padding-bottom: 2rem;
+            border: 3px solid transparent;
+            border-radius: 10px;
+            animation: header-border-spark 8s linear infinite;
+        }
+        .header-title {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 700;
+            line-height: 1;
+            text-align: center;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+        .header-title .letter { display: inline-block; transition: transform 0.3s ease, color 0.3s ease; }
+        .header-title:hover .letter { transform: translateY(-10px); }
+        .header-title .letter.white { color: #ffffff; }
+        .header-title .letter.orange { color: #f97316; }
+        .header-title .letter.space { margin: 0 0.1em; }
+        .header-title .letter:hover { transform: translateY(-20px) scale(1.1); color: #22d3ee; }
+        .spark-source { animation: text-spark 8s linear infinite; }
+
+        @keyframes text-spark {
+            0%, 100% { text-shadow: none; }
+            50% { text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 40px #22d3ee, 0 0 80px #22d3ee; }
+        }
+        @keyframes header-border-spark {
+            0%, 100% { border-color: transparent; box-shadow: none; }
+            50% { border-color: #22d3ee; box-shadow: 0 0 20px #22d3ee, inset 0 0 10px #22d3ee; }
+        }
+
+        /* Video Container for responsive embedding */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            background: #000;
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Orange Glow Effect for Motivational Text */
+        .glowing-orange {
+            color: #f97316; /* Tailwind orange-500 */
+            animation: orange-glow 2s infinite ease-in-out;
+        }
+        @keyframes orange-glow {
+            0%, 100% { text-shadow: 0 0 5px rgba(249, 115, 22, 0.4); }
+            50% { text-shadow: 0 0 20px rgba(249, 115, 22, 1), 0 0 30px rgba(249, 115, 22, 0.7); }
+        }
+        
+        /* UPDATED: Cyan Glow Effect for Course Title */
+        .glowing-cyan {
+            color: #22d3ee; /* Tailwind cyan-400 */
+            text-transform: uppercase;
+            animation: cyan-glow 2s infinite ease-in-out;
+        }
+        @keyframes cyan-glow {
+            0%, 100% { text-shadow: 0 0 8px rgba(34, 211, 238, 0.5); }
+            50% { text-shadow: 0 0 25px rgba(34, 211, 238, 1), 0 0 40px rgba(34, 211, 238, 0.8); }
+        }
+
+        /* NEW: Glowing Light Green Button */
+        .glowing-green-btn-light {
+            animation: green-btn-light-glow 2s infinite ease-in-out;
+        }
+        @keyframes green-btn-light-glow {
+            0%, 100% {
+                box-shadow: 0 0 10px rgba(34, 197, 94, 0.6), 0 0 20px rgba(34, 197, 94, 0.4);
+            }
+            50% {
+                box-shadow: 0 0 25px rgba(34, 197, 94, 1), 0 0 40px rgba(34, 197, 94, 0.7);
+            }
+        }
+        
+        /* The custom mute button is now hidden as we are using default controls */
+        #mute-course-video {
+           display: none;
+        }
+
+    </style>
+</head>
+<body class="bg-gray-900 text-white">
+
+    <!-- Header Section -->
+    <header class="bg-black shadow-lg shadow-cyan-500/20">
+        <div class="text-center px-4 header-container w-full">
+             <a href="https://techseekeracademy.com" class="header-title font-teko inline-block">
+                <span class="letter white">T</span><span class="letter white">E</span><span class="letter white">C</span><span class="letter white">H</span>
+                <span class="letter space"></span>
+                <span class="letter orange">S</span><span class="letter orange">E</span><span class="letter orange">K</span><span class="letter orange">E</span><span class="letter orange">R</span>
+                <span class="letter space"></span>
+                <span class="letter white spark-source">ACADEMY</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-16">
+        
+        <!-- Welcome Message -->
+        <div class="text-center mb-12">
+            <!-- UPDATED Course Title and Welcome Message -->
+            <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold">
+                <span class="glowing-cyan">🔥 VIRAL 3D SHORTS AI AUTOMATION MASTERY</span>
+            </h1>
+            <p class="text-4xl md:text-5xl font-bold text-purple-400 font-bangla mt-4">কোর্সে আপনাকে স্বাগতম!</p>
+            
+            <p class="text-2xl md:text-3xl font-bold glowing-orange font-bangla mt-8">অভিনন্দন! আপনি আপনার জীবনের সেরা সিদ্ধান্তটি নিয়েছেন।</p>
+            <p class="text-xl text-gray-300 mt-4 font-bangla">আপনার সফলতার যাত্রায় আমরা আপনাকে স্বাগত জানাই। নিচে আপনার কোর্সের ওয়েলকাম ভিডিও এবং প্রয়োজনীয় রিসোর্স দেওয়া হলো।</p>
+        </div>
+
+        <!-- Course Video Section -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-purple-400 mb-6 text-center font-bangla">আপনার জন্য একটি বিশেষ বার্তা</h2>
+            <div class="video-container bg-black rounded-xl shadow-lg shadow-purple-500/30 mx-auto max-w-4xl border-2 border-purple-800">
+                <!-- This div is where the YouTube player will be inserted by JavaScript -->
+                <div id="course-video-player"></div>
+                <!-- This is the custom mute/unmute button -->
+                <button id="mute-course-video"></button>
+            </div>
+        </section>
+
+        <!-- Download Section -->
+        <section>
+            <h2 class="text-3xl font-bold text-green-400 mb-6 text-center font-bangla">প্রয়োজনীয় রিসোর্স ডাউনলোড</h2>
+            <div class="max-w-2xl mx-auto bg-black rounded-xl p-8 shadow-lg shadow-green-500/20 text-center border-2 border-green-800">
+                <p class="text-lg text-gray-300 mb-6 font-bangla">
+                    এই ফোল্ডারের ভেতর কোর্সটি করার জন্য প্রয়োজনীয় সফটওয়্যার এবং গাইডলাইন দেওয়া আছে।
+                </p>
+                <!-- UPDATED Download Button with glow -->
+                <a href="https://mega.nz/folder/JkB02TxJ#OUrODtpqeC7tUQhVBpgUWQ" target="_blank" class="inline-flex items-center justify-center bg-green-600 text-white font-bold text-xl py-4 px-8 rounded-lg hover:bg-green-700 transition-all duration-300 transform hover:scale-105 glowing-green-btn-light">
+                    <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                    ডাউনলোড করুন (Course Folder)
+                </a>
+            </div>
+        </section>
+        
+        <!-- Support Section -->
+        <section class="mt-16 text-center text-gray-400 font-bangla">
+             <p>ডাউনলোড বা ভিডিও দেখতে কোনো সমস্যা হলে আমাদের <a href="https://web.facebook.com/messages/t/106696837796420/" target="_blank" class="text-cyan-400 hover:underline">ফেসবুক পেজে</a>, <a href="https://wa.me/message/K4UWIP55B2XGP1" target="_blank" class="text-green-400 hover:underline">হোয়াটসঅ্যাপে</a>, অথবা <a href="https://t.me/tasints" target="_blank" class="text-sky-400 hover:underline">টেলিগ্রামে</a> যোগাযোগ করুন।</p>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black border-t border-cyan-500/30 py-8 mt-16">
+        <div class="container mx-auto text-center text-gray-400">
+             <p>&copy; 2025 TECH SEEKER ACADEMY. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- YouTube IFrame API Script -->
+    <script src="https://www.youtube.com/iframe_api"></script>
+    
+    <!-- NEW: JavaScript for Custom YouTube Player -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            let coursePlayer;
+            const videoId = 's1wW81DqfOQ'; // Your unlisted YouTube video ID goes here
+            
+            // This function creates the player after the API script downloads.
+            window.onYouTubeIframeAPIReady = function() {
+                coursePlayer = new YT.Player('course-video-player', {
+                    height: '100%',
+                    width: '100%',
+                    videoId: videoId,
+                    playerVars: {
+                        'autoplay': 1,
+                        'mute': 1, // Start muted to allow autoplay
+                        'controls': 1, // <-- CHANGED FROM 0 TO 1 TO SHOW CONTROLS
+                        'rel': 0,
+                        'showinfo': 0,
+                        'loop': 1,
+                        'playlist': videoId // Important for looping a single video
+                    },
+                    events: {
+                        'onReady': onPlayerReady
+                    }
+                });
+            }
+
+            // The API will call this function when the video player is ready.
+            function onPlayerReady(event) {
+                event.target.playVideo(); // Ensure it plays
+            }
+        });
+    </script>
+
+</body>
+</html>
+
